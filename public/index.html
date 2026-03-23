@@ -393,16 +393,73 @@
     }
 
     /* ── Color source filter ── */
-    .source-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
-    .source-tab {
-      font-size: 11px; font-weight: 600; padding: 4px 10px;
-      border-radius: 6px; border: 1px solid var(--border);
-      background: var(--bg); color: var(--text-mute);
-      cursor: pointer; transition: all 0.15s;
+    .source-tabs { display: none; } /* legacy, replaced by standard-grid */
+    .source-tab { display: none; }
+
+    /* ── Color Standard Grid ── */
+    .standard-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
     }
-    .source-tab:hover, .source-tab.active {
-      background: var(--accent-lt); border-color: var(--accent-md); color: var(--accent-dk);
+    @media (max-width: 540px) {
+      .standard-grid { grid-template-columns: repeat(2, 1fr); }
     }
+    .std-card {
+      display: flex; flex-direction: column; align-items: flex-start;
+      background: var(--card); border: 2px solid var(--border);
+      border-radius: 13px; padding: 0;
+      cursor: pointer; transition: all 0.2s;
+      text-align: left; font-family: var(--sans);
+      overflow: hidden; box-shadow: var(--shadow-sm);
+      position: relative;
+    }
+    .std-card:hover {
+      border-color: var(--accent-md);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .std-card.active {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(93,122,93,0.18), var(--shadow-md);
+    }
+    .std-strip { width: 100%; height: 6px; flex-shrink: 0; }
+    .std-card[data-source="all"]        .std-strip { background: linear-gradient(90deg,#FF6B6B,#FFD93D,#6BCB77,#4D96FF,#C77DFF); }
+    .std-card[data-source="css"]        .std-strip { background: linear-gradient(90deg,#264de4,#2965f1,#1a9bdd); }
+    .std-card[data-source="ral_classic"].std-strip { background: linear-gradient(90deg,#AF2B1E,#E5BE01,#1A3550); }
+    .std-card[data-source="ral_design"] .std-strip { background: linear-gradient(90deg,#4C9141,#2271B3,#8830A8); }
+    .std-card[data-source="pantone"]    .std-strip { background: linear-gradient(90deg,#C8102E,#FF6720,#FFCD00,#003DA5); }
+    .std-card[data-source="ncs"]        .std-strip { background: linear-gradient(90deg,#E01010,#F4ED00,#00A010,#1858A0); }
+    .std-body { padding: 11px 11px 12px; width: 100%; display: flex; flex-direction: column; flex: 1; }
+    .std-icon { font-size: 20px; margin-bottom: 6px; line-height: 1; }
+    .std-name {
+      font-size: 12px; font-weight: 700; color: var(--text);
+      margin-bottom: 3px; line-height: 1.2;
+    }
+    .std-card.active .std-name { color: var(--accent-dk); }
+    .std-desc { font-size: 10px; color: var(--text-mute); line-height: 1.45; margin-bottom: 8px; flex: 1; }
+    .std-count {
+      font-size: 10px; font-weight: 700;
+      color: var(--accent); background: var(--accent-lt);
+      border: 1px solid var(--accent-md);
+      border-radius: 5px; padding: 2px 7px; align-self: flex-start;
+      transition: all 0.2s;
+    }
+    .std-card:not(.active) .std-count {
+      color: var(--text-mute); background: var(--bg2); border-color: var(--border);
+    }
+    .std-card.active .std-count {
+      background: var(--accent); color: #fff; border-color: var(--accent);
+    }
+    .std-check {
+      position: absolute; top: 13px; right: 9px;
+      width: 17px; height: 17px; border-radius: 50%;
+      background: var(--accent); color: #fff;
+      font-size: 10px; display: none;
+      align-items: center; justify-content: center;
+      font-weight: 700;
+    }
+    .std-card.active .std-check { display: flex; }
 
     /* ── Image Picker ── */
     .img-drop-area {
@@ -708,16 +765,81 @@
       </div>
     </div>
 
-    <!-- Color Source Selector -->
-    <div class="card">
+    <!-- Color Standard Selector — prominent card grid -->
+    <div class="card" id="standardCard">
       <div class="card-body">
         <div class="card-title">Color Standard</div>
-        <div class="source-tabs" id="sourceTabs" role="group" aria-label="Select color standard for name matching">
-          <button class="source-tab active" data-source="all" onclick="setSource('all')">All</button>
-          <button class="source-tab" data-source="css" onclick="setSource('css')">CSS Named</button>
-          <button class="source-tab" data-source="ral" onclick="setSource('ral')">RAL Classic</button>
+        <p style="font-size:13px;color:var(--text-mid);line-height:1.6;margin-bottom:16px">Choose which naming standard to use when identifying colors. The selected standard determines the color name shown in the preview above.</p>
+        <div class="standard-grid" id="standardGrid" role="group" aria-label="Select color standard">
+
+          <button class="std-card active" data-source="all" onclick="setSource('all')">
+            <div class="std-strip"></div>
+            <div class="std-body">
+              <div class="std-icon">🌐</div>
+              <div class="std-name">All Standards</div>
+              <div class="std-desc">Search across all databases at once</div>
+              <div class="std-count" id="cnt-all">— colors</div>
+            </div>
+            <div class="std-check">✓</div>
+          </button>
+
+          <button class="std-card" data-source="css" onclick="setSource('css')">
+            <div class="std-strip"></div>
+            <div class="std-body">
+              <div class="std-icon">💻</div>
+              <div class="std-name">CSS Named</div>
+              <div class="std-desc">W3C web standard for HTML &amp; CSS</div>
+              <div class="std-count" id="cnt-css">— colors</div>
+            </div>
+            <div class="std-check">✓</div>
+          </button>
+
+          <button class="std-card" data-source="ral_classic" onclick="setSource('ral_classic')">
+            <div class="std-strip"></div>
+            <div class="std-body">
+              <div class="std-icon">🏭</div>
+              <div class="std-name">RAL Classic</div>
+              <div class="std-desc">European industrial &amp; coating standard</div>
+              <div class="std-count" id="cnt-ral_classic">— colors</div>
+            </div>
+            <div class="std-check">✓</div>
+          </button>
+
+          <button class="std-card" data-source="ral_design" onclick="setSource('ral_design')">
+            <div class="std-strip"></div>
+            <div class="std-body">
+              <div class="std-icon">🏗️</div>
+              <div class="std-name">RAL Design</div>
+              <div class="std-desc">Extended system for architects &amp; designers</div>
+              <div class="std-count" id="cnt-ral_design">— colors</div>
+            </div>
+            <div class="std-check">✓</div>
+          </button>
+
+          <button class="std-card" data-source="pantone" onclick="setSource('pantone')">
+            <div class="std-strip"></div>
+            <div class="std-body">
+              <div class="std-icon">🎨</div>
+              <div class="std-name">Pantone</div>
+              <div class="std-desc">Global standard for print, fashion &amp; branding</div>
+              <div class="std-count" id="cnt-pantone">— colors</div>
+            </div>
+            <div class="std-check">✓</div>
+          </button>
+
+          <button class="std-card" data-source="ncs" onclick="setSource('ncs')">
+            <div class="std-strip"></div>
+            <div class="std-body">
+              <div class="std-icon">👁️</div>
+              <div class="std-name">NCS</div>
+              <div class="std-desc">Natural Color System — human perception based</div>
+              <div class="std-count" id="cnt-ncs">— colors</div>
+            </div>
+            <div class="std-check">✓</div>
+          </button>
+
         </div>
-        <p style="font-size:12px;color:var(--text-mute)">Choose which color standard to use when identifying the nearest color name. Select <strong>RAL Classic</strong> for industrial/paint matching.</p>
+        <p style="font-size:10px;color:var(--text-lt);margin-top:12px;font-style:italic">* Pantone, NCS and RAL Design HEX values are screen approximations. Physical colors may differ. Add more colors via POST /api/colors.</p>
       </div>
     </div>
 
@@ -891,7 +1013,7 @@
       </details>
       <details class="faq-item">
         <summary>How do I find the name of a color from its HEX code?</summary>
-        <div class="faq-answer">Type or paste your HEX code in the input field above. Color Analyzer compares it against 400+ named colors and returns the closest match with an exact distance score.</div>
+        <div class="faq-answer">This tool includes five color standards: <strong>CSS Named Colors</strong> (W3C web standard), <strong>RAL Classic</strong> (European industrial coatings), <strong>RAL Design System+</strong> (extended architectural palette), <strong>Pantone Solid Coated</strong> (global print &amp; brand standard), and <strong>NCS</strong> (Natural Color System, based on human perception). Use the Standard selector to switch between them.</div>
       </details>
       <details class="faq-item">
         <summary>What is the difference between RGB and HSL?</summary>
@@ -1160,10 +1282,10 @@ function copySwatch(id) {
 // ── Source selector ────────────────────────────────────────
 function setSource(source) {
   ACTIVE_SOURCE = source;
-  document.querySelectorAll(".source-tab").forEach(tab => {
-    tab.classList.toggle("active", tab.dataset.source === source);
+  document.querySelectorAll(".std-card").forEach(card => {
+    card.classList.toggle("active", card.dataset.source === source);
   });
-  applyHex(currentHex); // re-run with new source
+  applyHex(currentHex);
 }
 
 // ── EyeDropper ────────────────────────────────────────────
@@ -1275,14 +1397,27 @@ function clearCanvas() {
 // ── Load colors from API ───────────────────────────────────
 async function loadColors() {
   try {
-    const res = await fetch("/api/colors");
-    if(!res.ok) throw new Error("API error");
-    ALL_COLORS = await res.json();
+    const [colorsRes, sourcesRes] = await Promise.all([
+      fetch("/api/colors"),
+      fetch("/api/colors/sources")
+    ]);
+    if (!colorsRes.ok) throw new Error("API error");
+    ALL_COLORS = await colorsRes.json();
+    const sources = await sourcesRes.json();
+
+    // Update count badges
+    const total = ALL_COLORS.length;
+    const cntAll = document.getElementById("cnt-all");
+    if (cntAll) cntAll.textContent = `${total} colors`;
+    for (const s of sources) {
+      const el = document.getElementById(`cnt-${s.source}`);
+      if (el) el.textContent = `${s.count} colors`;
+    }
+
     console.log(`Loaded ${ALL_COLORS.length} colors from database`);
     applyHex(currentHex);
   } catch(e) {
     console.warn("Could not load colors from API, using fallback:", e.message);
-    // Minimal fallback so the tool still works
     ALL_COLORS = [
       {name:"Red",hex:"#FF0000",source:"css",family:"red"},
       {name:"Green",hex:"#008000",source:"css",family:"green"},
