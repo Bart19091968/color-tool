@@ -88,9 +88,10 @@ Extensible via POST /api/colors (add Pantone, NCS, custom sets)
 `);
 });
 
+// ── Page routes ────────────────────────────────────────────
+app.get("/image", (req, res) => res.sendFile(path.join(__dirname, "public", "image.html")));
+
 // ── Catch-all → index.html ─────────────────────────────────
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
+app.get("*", (req, res) => res.sendFile(path.join(__dirname, "public", "index.html")));
 
 app.listen(PORT, () => console.log(`Color Analyzer → ${SITE}`));

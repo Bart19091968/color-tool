@@ -3,18 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Color Analyzer — Pick Color from Screen | HEX RGB HSL Converter</title>
-  <meta name="description" content="Use the EyeDropper to pick any color from your screen. Instantly get the color name, HEX, RGB and HSL across CSS, RAL, Pantone and NCS standards." />
+  <title>Color Analyzer — Pick Color from Image | HEX RGB HSL Converter</title>
+  <meta name="description" content="Upload any photo and click any pixel to identify its color. Get the color name, HEX, RGB and HSL across CSS, RAL, Pantone and NCS standards." />
   <meta name="robots" content="index, follow" />
-  <link rel="canonical" href="https://coloranalyzer.app/" />
-  <meta property="og:title" content="Color Analyzer — Pick Color from Screen" />
-  <meta property="og:description" content="Pick any color from your screen. Get name, HEX, RGB, HSL and palettes instantly." />
-  <meta property="og:url" content="https://coloranalyzer.app/" />
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Color Analyzer","description":"Pick any color from your screen or image. Identify color names across CSS, RAL, Pantone and NCS standards.","url":"https://coloranalyzer.app/","applicationCategory":"DesignApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+  <link rel="canonical" href="https://coloranalyzer.app/image.html" />
+  <meta property="og:title" content="Color Analyzer — Pick Color from Image" />
+  <meta property="og:description" content="Upload a photo, click any pixel, get the color name, HEX, RGB and HSL instantly." />
+  <meta property="og:url" content="https://coloranalyzer.app/image.html" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Color Analyzer — Image Picker","description":"Upload any photo and click a pixel to identify its color name across CSS, RAL, Pantone and NCS standards.","url":"https://coloranalyzer.app/image.html","applicationCategory":"DesignApplication","operatingSystem":"Web Browser","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="shared.css" />
+
+  <style>
+    /* Image page — make the drop area more prominent */
+    .img-drop {
+      padding: 40px 24px;
+    }
+    .img-drop-icon { font-size: 48px; margin-bottom: 12px; }
+    .img-drop-title { font-size: 17px; }
+    #canvasWrap { display: none; }
+    #imgCanvas { max-height: 500px; object-fit: contain; }
+  </style>
 </head>
 <body>
 
@@ -32,14 +43,13 @@
       <span class="logo-text">Color<span>Analyzer</span></span>
     </a>
     <nav class="header-nav" aria-label="Main navigation">
-      <!-- Tools dropdown -->
       <div class="nav-dropdown">
-        <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false">Tools</button>
+        <button class="nav-dropdown-btn">Tools</button>
         <div class="nav-dropdown-menu" role="menu">
-          <a href="/index.html" class="nav-dropdown-item active" role="menuitem">
+          <a href="/index.html" class="nav-dropdown-item" role="menuitem">
             <span class="item-icon">🖱️</span> Pick from Screen
           </a>
-          <a href="/image.html" class="nav-dropdown-item" role="menuitem">
+          <a href="/image.html" class="nav-dropdown-item active" role="menuitem">
             <span class="item-icon">🖼️</span> Pick from Image
           </a>
         </div>
@@ -57,11 +67,11 @@
 <!-- ── Hero ───────────────────────────────────────────── -->
 <section class="hero">
   <div class="hero-badge">✦ Free Color Tool — 1,165 Named Colors</div>
-  <h1>Pick Any Color<br>from Your Screen</h1>
-  <p>Click anywhere on your screen and instantly identify the color name, HEX, RGB and HSL across 5 professional color standards.</p>
+  <h1>Pick Any Color<br>from an Image</h1>
+  <p>Upload any photo, hover over it, and click any pixel to instantly identify the color name, HEX, RGB and HSL across 5 professional standards.</p>
   <div class="hero-actions">
-    <button class="hero-btn hero-btn-primary" onclick="activateEyedropper()">🖱️ Pick from Screen</button>
-    <a href="/image.html" class="hero-btn hero-btn-secondary">🖼️ Pick from Image</a>
+    <button class="hero-btn hero-btn-primary" onclick="document.getElementById('imgFile').click()">🖼️ Upload Image</button>
+    <a href="/index.html" class="hero-btn hero-btn-secondary">🖱️ Pick from Screen</a>
     <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=hero" target="_blank" rel="noopener sponsored" class="hero-btn hero-btn-canva">✏️ Design with Canva</a>
   </div>
 </section>
@@ -72,25 +82,45 @@
   <!-- ── Tool column ──────────────────────────────────── -->
   <div class="tool-col" id="tool">
 
-    <!-- Eyedropper — primary CTA -->
-    <div>
-      <button id="eyedropBtn" onclick="activateEyedropper()">
-        <span class="icon" id="eyedropIcon">🖱️</span>
-        <div>
-          <div class="btn-main" id="eyedropText">Pick Color from Screen</div>
-          <div class="btn-sub" id="eyedropSub">EyeDropper API — click anywhere on your screen</div>
+    <!-- Image upload — primary CTA -->
+    <div class="card">
+      <div class="card-pad" style="padding-bottom:0">
+        <div class="card-title">Upload Image</div>
+      </div>
+      <div style="padding:0 16px 16px">
+        <div id="imgDrop" class="img-drop"
+          onclick="document.getElementById('imgFile').click()"
+          ondragover="handleDragOver(event)"
+          ondragleave="handleDragLeave(event)"
+          ondrop="handleDrop(event)"
+          role="button" tabindex="0">
+          <div class="img-drop-icon">🖼️</div>
+          <div class="img-drop-title">Click to upload or drag &amp; drop</div>
+          <div class="img-drop-sub">JPG, PNG, WebP, GIF — any size</div>
         </div>
-      </button>
-      <div id="dropperMsg" role="status" aria-live="polite" style="margin-top:6px"></div>
-      <div class="no-support-msg" id="noSupportMsg" style="display:none;margin-top:5px">⚠️ EyeDropper requires Chrome or Edge</div>
+        <input type="file" id="imgFile" accept="image/*" style="display:none" onchange="handleImgUpload(this.files[0])" />
+
+        <div id="canvasWrap">
+          <canvas id="imgCanvas"></canvas>
+          <div class="canvas-hint">👆 Hover to preview · Click to pick the color</div>
+          <div class="canvas-preview">
+            <div class="canvas-swatch" id="canvasSwatch" style="background:#1E90FF"></div>
+            <div class="canvas-info">
+              <strong id="canvasName">Hover over the image</strong><br/>
+              <span id="canvasHex" style="font-family:monospace;font-size:11px">—</span>
+            </div>
+          </div>
+          <button id="canvasClearBtn" onclick="clearCanvas()">✕ Remove image</button>
+        </div>
+      </div>
     </div>
 
-    <div class="divider">or enter manually</div>
+    <div class="divider">color result</div>
 
-    <!-- Color preview card with standard selector built in -->
+    <!-- Color preview card with standard selector -->
     <div class="card">
 
-      <!-- Standard selector — radio buttons inside the card -->
+      <!-- Standard selector -->
       <div class="std-radios" role="group" aria-label="Color standard">
         <div class="std-radios-label">Color Standard</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px">
@@ -176,12 +206,26 @@
     <!-- Psychology -->
     <div class="card"><div class="card-pad"><div class="card-title">Color Psychology</div><div id="psychWrap"></div></div></div>
 
-    <!-- Link to image page -->
+    <!-- Link to screen page -->
     <div class="card">
       <div class="page-switcher">
-        <a href="/index.html" class="switcher-btn active">🖱️ Pick from Screen</a>
-        <a href="/image.html" class="switcher-btn inactive">🖼️ Pick from Image</a>
+        <a href="/index.html" class="switcher-btn inactive">🖱️ Pick from Screen</a>
+        <a href="/image.html" class="switcher-btn active">🖼️ Pick from Image</a>
       </div>
+    </div>
+
+    <!-- Eyedropper as secondary tool -->
+    <div>
+      <div style="font-size:11px;color:var(--text-mute);text-align:center;margin-bottom:8px;font-weight:600">Or pick directly from screen:</div>
+      <button id="eyedropBtn" onclick="activateEyedropper()" style="width:100%">
+        <span class="icon" id="eyedropIcon">🖱️</span>
+        <div>
+          <div class="btn-main" id="eyedropText">Pick Color from Screen</div>
+          <div class="btn-sub" id="eyedropSub">EyeDropper API — Chrome &amp; Edge only</div>
+        </div>
+      </button>
+      <div id="dropperMsg" style="margin-top:6px"></div>
+      <div class="no-support-msg" id="noSupportMsg" style="display:none;margin-top:5px">⚠️ EyeDropper requires Chrome or Edge</div>
     </div>
 
   </div><!-- /tool-col -->
@@ -194,13 +238,13 @@
         <span class="canva-card-logo-text">Canva</span>
       </div>
       <h3>Use your color in a design</h3>
-      <p>Found the perfect color? Bring it to life in Canva — the free design tool used by 170 million people.</p>
+      <p>Found the perfect color from your image? Bring it to life in Canva — free for everyone.</p>
       <div class="canva-features">
         <div class="canva-feat">Paste your HEX code directly</div>
         <div class="canva-feat">Social posts, presentations & more</div>
         <div class="canva-feat">Free forever — no credit card</div>
       </div>
-      <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=sidebar" target="_blank" rel="noopener sponsored" class="canva-btn">Open Canva Free →</a>
+      <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=sidebar-image" target="_blank" rel="noopener sponsored" class="canva-btn">Open Canva Free →</a>
     </div>
 
     <div class="card"><div class="card-pad" style="padding:16px">
@@ -214,9 +258,9 @@
     </div></div>
 
     <div class="card"><div class="card-pad" style="padding:16px">
-      <div style="font-size:14px;font-weight:800;color:var(--text);margin-bottom:8px">Need More Design Power?</div>
-      <p style="font-size:13px;color:var(--text-mid);margin-bottom:12px;line-height:1.6">Canva Pro gives you brand palettes, premium fonts and 100M+ assets.</p>
-      <a href="https://www.canva.com/pro/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=pro" target="_blank" rel="noopener sponsored"
+      <div style="font-size:14px;font-weight:800;color:var(--text);margin-bottom:8px">Tip: Brand Colors</div>
+      <p style="font-size:13px;color:var(--text-mid);margin-bottom:12px;line-height:1.6">Upload a brand logo or screenshot to extract its exact HEX color codes. Use Canva Pro to save your brand palette.</p>
+      <a href="https://www.canva.com/pro/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=pro-image" target="_blank" rel="noopener sponsored"
         style="display:flex;align-items:center;justify-content:space-between;background:var(--purple-lt);border:2px solid var(--purple-mid);border-radius:10px;padding:12px 14px;text-decoration:none;transition:all 0.2s"
         onmouseover="this.style.background='#ddd6fe'" onmouseout="this.style.background='var(--purple-lt)'">
         <div><div style="font-weight:800;font-size:13px;color:var(--purple-dk)">Try Canva Pro</div><div style="font-size:11px;color:var(--text-mute);margin-top:1px">30-day free trial</div></div>
@@ -229,12 +273,12 @@
   <section id="knowledge" aria-labelledby="know-h">
     <h2 class="section-head" id="know-h">Understanding Color Models</h2>
     <div class="know-grid">
-      <article class="know-card"><div class="know-icon">🔢</div><h3>What is a HEX Code?</h3><p>A HEX code is a six-character hexadecimal number for RGB color, prefixed with <code>#</code>. Each two-character pair encodes Red, Green or Blue from <code>00</code> (0) to <code>FF</code> (255). Example: <code>#FF5733</code> is a warm orange-red.</p></article>
-      <article class="know-card"><div class="know-icon">⚖️</div><h3>RGB vs HSL</h3><p>RGB controls light channels directly. HSL uses Hue (0–360°), Saturation (0–100%) and Lightness (0–100%) — much easier for programmatic adjustments like making a color 20% lighter.</p></article>
-      <article class="know-card"><div class="know-icon">🏭</div><h3>RAL Colors</h3><p>RAL is a European standard for paints and coatings. RAL Classic has 213 codes (e.g. RAL 3000 — Flame Red). RAL Design System+ extends this to 1,625+ colors by hue and lightness.</p></article>
-      <article class="know-card"><div class="know-icon">🎨</div><h3>Pantone &amp; NCS</h3><p>Pantone is the global print &amp; brand identity standard. NCS (Natural Color System) is based on human color perception. Both use HEX approximations for screen display.</p></article>
-      <article class="know-card"><div class="know-icon">🌈</div><h3>Complementary Colors</h3><p>A complementary color is directly opposite on the color wheel. Triadic colors are 120° and 240° apart on the HSL wheel — both form the basis of professional color systems.</p></article>
-      <article class="know-card"><div class="know-icon">✏️</div><h3>Use Colors in Canva</h3><p>Copy your HEX and paste it directly in Canva's color picker. Click any element → color swatch → paste HEX. <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=knowledge" target="_blank" rel="noopener sponsored" style="color:var(--purple);font-weight:700">Try Canva free →</a></p></article>
+      <article class="know-card"><div class="know-icon">🖼️</div><h3>How the Image Picker Works</h3><p>The image is drawn on an HTML Canvas. When you hover or click, the tool reads the exact RGBA values of that pixel using <code>getImageData()</code>. No data is sent to any server — everything runs locally in your browser.</p></article>
+      <article class="know-card"><div class="know-icon">🔢</div><h3>What is a HEX Code?</h3><p>A HEX code is a six-character hexadecimal number for RGB color, prefixed with <code>#</code>. Each pair encodes Red, Green or Blue from <code>00</code> (0) to <code>FF</code> (255). Example: <code>#FF5733</code> is a warm orange-red.</p></article>
+      <article class="know-card"><div class="know-icon">⚖️</div><h3>RGB vs HSL</h3><p>RGB controls light channels directly. HSL uses Hue (0–360°), Saturation and Lightness — easier for adjustments. To lighten a color by 10%, just increase the L value by 10.</p></article>
+      <article class="know-card"><div class="know-icon">🏭</div><h3>RAL Colors</h3><p>RAL is a European standard for paints and coatings. RAL Classic has 213 codes. RAL Design System+ extends this with 1,625+ colors organized by hue and lightness — ideal for architecture and interior design.</p></article>
+      <article class="know-card"><div class="know-icon">🎨</div><h3>Pantone &amp; NCS</h3><p>Pantone is the global print and brand identity standard. NCS is based on human color perception, widely used in Scandinavian design. Both use HEX approximations for screen display.</p></article>
+      <article class="know-card"><div class="know-icon">✏️</div><h3>Use Colors in Canva</h3><p>Copy your HEX and paste it in Canva's color picker. Select any element → click the color swatch → paste HEX in the input field. <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=knowledge-image" target="_blank" rel="noopener sponsored" style="color:var(--purple);font-weight:700">Try Canva free →</a></p></article>
     </div>
   </section>
 
@@ -242,12 +286,12 @@
   <section id="faq" aria-labelledby="faq-h">
     <h2 class="section-head" id="faq-h">Frequently Asked Questions</h2>
     <div class="faq-list">
-      <details class="faq"><summary>How does the EyeDropper work?</summary><div class="faq-ans">Click "Pick from Screen". Your cursor becomes a crosshair. Click any pixel on your screen — including outside the browser window. The tool captures the exact color at that point. Requires Chrome 95+ or Edge 95+.</div></details>
-      <details class="faq"><summary>What is a HEX color code?</summary><div class="faq-ans">A HEX code is a six-digit hexadecimal number for an RGB color, starting with #. Each pair represents Red, Green and Blue (00–FF). For example, #FF5733 is a warm orange-red.</div></details>
-      <details class="faq"><summary>What color standards are supported?</summary><div class="faq-ans">Five standards: CSS Named Colors (W3C), RAL Classic (industrial), RAL Design System+ (architectural), Pantone Solid Coated (brand/print), and NCS Natural Color System. Select with the radio buttons above the color tool.</div></details>
-      <details class="faq"><summary>What is the difference between RGB and HSL?</summary><div class="faq-ans">RGB mixes red, green and blue channels. HSL describes Hue (0–360°), Saturation and Lightness. HSL is easier for design work — to make a color lighter, simply increase the L value.</div></details>
-      <details class="faq"><summary>How do I use my color in Canva?</summary><div class="faq-ans">Click the HEX chip to copy your code. In Canva, select any element, click its color swatch in the toolbar, and paste your HEX in the color input field. Canva is free at canva.com.</div></details>
-      <details class="faq"><summary>Can I pick a color from an image instead?</summary><div class="faq-ans">Yes — use the <a href="/image.html" style="color:var(--purple);font-weight:700">Pick from Image</a> tool. Upload any photo and click any pixel to extract its exact color.</div></details>
+      <details class="faq"><summary>How do I pick a color from an image?</summary><div class="faq-ans">Click "Upload Image" or drag a photo onto the upload area. Once loaded, hover over any part of the image to preview its color. Click to lock in that color and see the full analysis.</div></details>
+      <details class="faq"><summary>Does my image get uploaded to a server?</summary><div class="faq-ans">No. The image is processed entirely in your browser using the HTML Canvas API. No image data is sent to any server. Your photos remain private.</div></details>
+      <details class="faq"><summary>What image formats are supported?</summary><div class="faq-ans">Any format your browser supports — JPG, PNG, WebP, GIF, BMP, SVG. There is no size limit, though very large images may take a moment to load.</div></details>
+      <details class="faq"><summary>What color standards are supported?</summary><div class="faq-ans">Five standards: CSS Named Colors (W3C), RAL Classic (industrial), RAL Design System+ (architectural), Pantone Solid Coated (brand/print), and NCS Natural Color System. Select with the radio buttons above the color result.</div></details>
+      <details class="faq"><summary>Can I pick multiple colors from the same image?</summary><div class="faq-ans">Yes — simply click different pixels in the image. Each click updates the color result. Use the HEX chip to copy each color before clicking the next one.</div></details>
+      <details class="faq"><summary>Can I also pick a color from my screen?</summary><div class="faq-ans">Yes — scroll down to the EyeDropper button, or use the <a href="/index.html" style="color:var(--purple);font-weight:700">Pick from Screen</a> tool. This requires Chrome or Edge browser.</div></details>
     </div>
   </section>
 
@@ -255,12 +299,12 @@
   <section id="resources" aria-labelledby="res-h">
     <h2 class="section-head" id="res-h">Design Tools &amp; Resources</h2>
     <div class="res-grid">
-      <div class="res-card"><div class="res-icon">✏️</div><div class="res-name">Canva</div><div class="res-desc">Design anything. Paste your HEX code directly. Free forever.</div><a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=resources" target="_blank" rel="noopener sponsored" class="res-link">Try Free →</a></div>
+      <div class="res-card"><div class="res-icon">✏️</div><div class="res-name">Canva</div><div class="res-desc">Design anything. Paste your HEX code directly. Free forever.</div><a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=resources-image" target="_blank" rel="noopener sponsored" class="res-link">Try Free →</a></div>
       <div class="res-card"><div class="res-icon">🌈</div><div class="res-name">Coolors.co</div><div class="res-desc">Fast palette generator. Lock colors and explore combinations.</div><a href="https://coolors.co" target="_blank" rel="noopener" class="res-link">Visit →</a></div>
       <div class="res-card"><div class="res-icon">🎨</div><div class="res-name">Adobe Color</div><div class="res-desc">Professional color wheel with complementary, triadic and more.</div><a href="https://color.adobe.com" target="_blank" rel="noopener" class="res-link">Visit →</a></div>
       <div class="res-card"><div class="res-icon">📏</div><div class="res-name">Contrast Checker</div><div class="res-desc">Verify WCAG 2.1 contrast ratios for accessibility compliance.</div><a href="https://webaim.org/resources/contrastchecker/" target="_blank" rel="noopener" class="res-link">Visit →</a></div>
       <div class="res-card"><div class="res-icon">📦</div><div class="res-name">RAL Colors</div><div class="res-desc">Official RAL website with the complete Classic and Design systems.</div><a href="https://www.ral-farben.de/en" target="_blank" rel="noopener" class="res-link">Visit →</a></div>
-      <div class="res-card"><div class="res-icon">🖼️</div><div class="res-name">Canva Palette</div><div class="res-desc">Extract color palettes from photos and apply them to your designs.</div><a href="https://www.canva.com/colors/color-palette-generator/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=resources" target="_blank" rel="noopener sponsored" class="res-link">Try Free →</a></div>
+      <div class="res-card"><div class="res-icon">🖼️</div><div class="res-name">Canva Palette</div><div class="res-desc">Extract color palettes from your photos directly in Canva.</div><a href="https://www.canva.com/colors/color-palette-generator/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=resources-image" target="_blank" rel="noopener sponsored" class="res-link">Try Free →</a></div>
     </div>
     <p style="font-size:11px;color:var(--text-lt);margin-top:14px">* "Try Free" links to Canva are affiliate links. We may earn a commission at no cost to you. Canva® is a trademark of Canva Pty Ltd.</p>
   </section>
@@ -284,7 +328,7 @@
         <a href="#faq">FAQ</a>
         <a href="#resources">Resources</a>
         <a href="/api/colors">API</a>
-        <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=footer" target="_blank" rel="noopener sponsored" style="color:var(--purple-mid)">Try Canva →</a>
+        <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=footer-image" target="_blank" rel="noopener sponsored" style="color:var(--purple-mid)">Try Canva →</a>
       </div>
     </div>
     <div class="footer-bottom">
