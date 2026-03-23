@@ -21,6 +21,11 @@
 <!-- ── Header ─────────────────────────────────────────── -->
 <header class="header">
   <div class="header-inner">
+    <!-- Hamburger (mobile) -->
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
     <a href="/" class="logo" aria-label="Color Analyzer home">
       <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <circle cx="18" cy="10" r="7" fill="#7950f2" opacity="0.9"/>
@@ -31,26 +36,41 @@
       </svg>
       <span class="logo-text">Color<span>Analyzer</span></span>
     </a>
+
+    <!-- Desktop nav -->
     <nav class="header-nav" aria-label="Main navigation">
-      <!-- Tools dropdown -->
       <div class="nav-dropdown">
-        <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false">Tools</button>
+        <button class="nav-dropdown-btn">Tools <span class="chevron">▾</span></button>
         <div class="nav-dropdown-menu" role="menu">
-          <a href="/index.html" class="nav-dropdown-item active" role="menuitem">
-            <span class="item-icon">🖱️</span> Pick from Screen
-          </a>
-          <a href="/image.html" class="nav-dropdown-item" role="menuitem">
-            <span class="item-icon">🖼️</span> Pick from Image
-          </a>
+          <a href="/index.html" class="nav-dropdown-item active" role="menuitem"><span class="item-icon">🖱️</span> Pick from Screen</a>
+          <a href="/image.html" class="nav-dropdown-item" role="menuitem"><span class="item-icon">🖼️</span> Pick from Image</a>
         </div>
       </div>
       <a href="#knowledge" class="nav-link">Learn</a>
       <a href="#faq" class="nav-link">FAQ</a>
+      <a href="#resources" class="nav-link">Resources</a>
+    </nav>
+
+    <!-- Right: CTA always visible -->
+    <div class="nav-right">
       <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=header" target="_blank" rel="noopener sponsored" class="nav-cta">
-        <svg width="14" height="14" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="10" r="7" fill="white" opacity="0.9"/><circle cx="26" cy="23" r="7" fill="white" opacity="0.75"/><circle cx="10" cy="23" r="7" fill="white" opacity="0.6"/></svg>
+        <svg width="13" height="13" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="10" r="7" fill="white" opacity="0.9"/><circle cx="26" cy="23" r="7" fill="white" opacity="0.75"/><circle cx="10" cy="23" r="7" fill="white" opacity="0.6"/></svg>
         Try Canva Free
       </a>
-    </nav>
+    </div>
+
+    <!-- Mobile menu overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="/index.html" class="mobile-menu-link active"><span class="mobile-menu-icon">🖱️</span> Pick from Screen</a>
+      <a href="/image.html" class="mobile-menu-link"><span class="mobile-menu-icon">🖼️</span> Pick from Image</a>
+      <div class="mobile-menu-divider"></div>
+      <a href="#knowledge" class="mobile-menu-link" onclick="closeMenu()"><span class="mobile-menu-icon">📖</span> Learn</a>
+      <a href="#faq" class="mobile-menu-link" onclick="closeMenu()"><span class="mobile-menu-icon">❓</span> FAQ</a>
+      <a href="#resources" class="mobile-menu-link" onclick="closeMenu()"><span class="mobile-menu-icon">🔗</span> Resources</a>
+      <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=mobile-menu" target="_blank" rel="noopener sponsored" class="mobile-menu-cta" onclick="closeMenu()">
+        ✏️ Try Canva Free
+      </a>
+    </div>
   </div>
 </header>
 
@@ -94,9 +114,6 @@
       <div class="std-radios" role="group" aria-label="Color standard">
         <div class="std-radios-label">Color Standard</div>
         <div style="display:flex;flex-wrap:wrap;gap:6px">
-
-          <input type="radio" class="std-radio-item" name="std" id="std-all"         value="all"         onchange="onStdRadio(this.value)" />
-          <label class="std-radio-lbl" for="std-all"><span class="lbl-icon">🌐</span> All <span class="lbl-count" id="cnt-all">1,165</span></label>
 
           <input type="radio" class="std-radio-item" name="std" id="std-css"         value="css"         onchange="onStdRadio(this.value)" checked />
           <label class="std-radio-lbl" for="std-css"><span class="lbl-icon">💻</span> CSS <span class="lbl-count" id="cnt-css">148</span></label>
@@ -176,13 +193,7 @@
     <!-- Psychology -->
     <div class="card"><div class="card-pad"><div class="card-title">Color Psychology</div><div id="psychWrap"></div></div></div>
 
-    <!-- Link to image page -->
-    <div class="card">
-      <div class="page-switcher">
-        <a href="/index.html" class="switcher-btn active">🖱️ Pick from Screen</a>
-        <a href="/image.html" class="switcher-btn inactive">🖼️ Pick from Image</a>
-      </div>
-    </div>
+
 
   </div><!-- /tool-col -->
 
@@ -298,6 +309,26 @@
 <script>
   initEyedropper();
   loadColors();
+
+  // Hamburger menu
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('hamburger');
+    menu.classList.toggle('open');
+    btn.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Close menu on outside click
+  document.addEventListener('click', e => {
+    const menu = document.getElementById('mobileMenu');
+    const btn = document.getElementById('hamburger');
+    if (menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
+  });
 </script>
 </body>
 </html>
