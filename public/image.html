@@ -65,22 +65,43 @@
     <!-- Right: CTA always visible -->
     <div class="nav-right">
       <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=header" target="_blank" rel="noopener sponsored" class="nav-cta">
-        <svg width="13" height="13" viewBox="0 0 36 36" fill="none"><circle cx="18" cy="10" r="7" fill="white" opacity="0.9"/><circle cx="26" cy="23" r="7" fill="white" opacity="0.75"/><circle cx="10" cy="23" r="7" fill="white" opacity="0.6"/></svg>
-        Try Canva Free
+        <!-- Canva-style gradient circle — shown on mobile -->
+        <svg class="nav-cta-icon" style="display:none;width:22px;height:22px;flex-shrink:0" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="18" fill="url(#ncg)"/>
+          <defs><linearGradient id="ncg" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#38d6c8"/><stop offset="60%" stop-color="#7d5ef2"/><stop offset="100%" stop-color="#6c4aff"/></linearGradient></defs>
+          <text x="18" y="23" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="700" font-size="11" fill="white">Ca</text>
+        </svg>
+        <!-- Text — shown on desktop -->
+        <span class="nav-cta-text">Try Canva Free</span>
       </a>
     </div>
 
     <!-- Mobile menu overlay -->
     <div class="mobile-menu" id="mobileMenu">
-      <a href="/index.html" class="mobile-menu-link"><span class="mobile-menu-icon">🖱️</span> Pick from Screen</a>
-      <a href="/image.html" class="mobile-menu-link active"><span class="mobile-menu-icon">🖼️</span> Pick from Image</a>
-      <div class="mobile-menu-divider"></div>
-      <a href="#knowledge" class="mobile-menu-link" onclick="closeMenu()"><span class="mobile-menu-icon">📖</span> Learn</a>
-      <a href="#faq" class="mobile-menu-link" onclick="closeMenu()"><span class="mobile-menu-icon">❓</span> FAQ</a>
-      <a href="#resources" class="mobile-menu-link" onclick="closeMenu()"><span class="mobile-menu-icon">🔗</span> Resources</a>
-      <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=mobile-menu" target="_blank" rel="noopener sponsored" class="mobile-menu-cta" onclick="closeMenu()">
-        ✏️ Try Canva Free
+      <button class="mobile-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
+      <nav class="mobile-menu-nav">
+        <a href="/index.html" class="mobile-menu-link" onclick="closeMenu()">Pick from Screen<span class="mobile-menu-arrow">›</span></a>
+        <a href="/image.html" class="mobile-menu-link active">Tools<span class="mobile-menu-arrow">›</span></a>
+        <a href="#knowledge" class="mobile-menu-link" onclick="closeMenu()">Learn<span class="mobile-menu-arrow">›</span></a>
+        <a href="#faq" class="mobile-menu-link" onclick="closeMenu()">FAQ<span class="mobile-menu-arrow">›</span></a>
+        <a href="#resources" class="mobile-menu-link" onclick="closeMenu()">Resources<span class="mobile-menu-arrow">›</span></a>
+      </nav>
+      <div class="mobile-menu-footer">
+        <div class="mobile-menu-footer-text">Design with<br/>your color →</div>
+        <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=mobile-logo" target="_blank" rel="noopener sponsored" class="canva-logo-btn" title="Try Canva Free" onclick="closeMenu()">
+        <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="27" cy="27" r="27" fill="url(#cg)"/>
+          <defs>
+            <linearGradient id="cg" x1="0" y1="0" x2="54" y2="54" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#38d6c8"/>
+              <stop offset="60%" stop-color="#7d5ef2"/>
+              <stop offset="100%" stop-color="#6c4aff"/>
+            </linearGradient>
+          </defs>
+          <text x="27" y="32" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="700" font-size="16" fill="white" letter-spacing="-0.5">Canva</text>
+        </svg>
       </a>
+      </div>
     </div>
   </div>
 </header>
