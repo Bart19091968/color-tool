@@ -31,8 +31,7 @@
         <circle cx="18" cy="10" r="7" fill="#7950f2" opacity="0.9"/>
         <circle cx="26" cy="23" r="7" fill="#4c6ef5" opacity="0.9"/>
         <circle cx="10" cy="23" r="7" fill="#00b4d8" opacity="0.9"/>
-        <circle cx="18" cy="18" r="5" fill="white" opacity="0.95"/>
-        <text x="18" y="22" text-anchor="middle" font-family="Nunito,sans-serif" font-weight="800" font-size="8" fill="#7950f2">C</text>
+        <circle cx="18" cy="18" r="5" fill="white" opacity="0.25"/>
       </svg>
       <span class="logo-text">Color<span>Analyzer</span></span>
     </a>
@@ -150,19 +149,19 @@
         <div style="display:flex;flex-wrap:wrap;gap:6px">
 
           <input type="radio" class="std-radio-item" name="std" id="std-css"         value="css"         onchange="onStdRadio(this.value)" checked />
-          <label class="std-radio-lbl" for="std-css"><span class="lbl-icon">💻</span> CSS <span class="lbl-count" id="cnt-css">148</span></label>
+          <span id="cnt-css" style="display:none"></span><label class="std-radio-lbl std-radio-logo" for="std-css"><img src="/logo-css.png" alt="CSS Colors" style="height:22px;width:auto;max-width:90px;object-fit:contain"/></label>
 
           <input type="radio" class="std-radio-item" name="std" id="std-ral_classic" value="ral_classic" onchange="onStdRadio(this.value)" />
-          <label class="std-radio-lbl" for="std-ral_classic"><span class="lbl-icon">🏭</span> RAL Classic <span class="lbl-count" id="cnt-ral_classic">212</span></label>
+          <span id="cnt-ral_classic" style="display:none"></span><label class="std-radio-lbl std-radio-logo" for="std-ral_classic"><img src="/logo-ral-classic.png" alt="RAL Classic" style="height:22px;width:auto;max-width:90px;object-fit:contain"/></label>
 
           <input type="radio" class="std-radio-item" name="std" id="std-ral_design"  value="ral_design"  onchange="onStdRadio(this.value)" />
-          <label class="std-radio-lbl" for="std-ral_design"><span class="lbl-icon">🏗️</span> RAL Design <span class="lbl-count" id="cnt-ral_design">196</span></label>
+          <span id="cnt-ral_design" style="display:none"></span><label class="std-radio-lbl std-radio-logo" for="std-ral_design"><img src="/logo-ral-design.png" alt="RAL Design" style="height:22px;width:auto;max-width:90px;object-fit:contain"/></label>
 
           <input type="radio" class="std-radio-item" name="std" id="std-pantone"     value="pantone"     onchange="onStdRadio(this.value)" />
-          <label class="std-radio-lbl" for="std-pantone"><span class="lbl-icon">🎨</span> Pantone <span class="lbl-count" id="cnt-pantone">338</span></label>
+          <span id="cnt-pantone" style="display:none"></span><label class="std-radio-lbl std-radio-logo" for="std-pantone"><img src="/logo-pantone.png" alt="Pantone" style="height:22px;width:auto;max-width:90px;object-fit:contain"/></label>
 
           <input type="radio" class="std-radio-item" name="std" id="std-ncs"         value="ncs"         onchange="onStdRadio(this.value)" />
-          <label class="std-radio-lbl" for="std-ncs"><span class="lbl-icon">👁️</span> NCS <span class="lbl-count" id="cnt-ncs">271</span></label>
+          <span id="cnt-ncs" style="display:none"></span><label class="std-radio-lbl std-radio-logo" for="std-ncs"><img src="/logo-ncs.png" alt="NCS" style="height:22px;width:auto;max-width:90px;object-fit:contain"/></label>
         </div>
       </div>
 
@@ -276,10 +275,23 @@
     <div class="know-grid">
       <article class="know-card"><div class="know-icon">🔢</div><h3>What is a HEX Code?</h3><p>A HEX code is a six-character hexadecimal number for RGB color, prefixed with <code>#</code>. Each two-character pair encodes Red, Green or Blue from <code>00</code> (0) to <code>FF</code> (255). Example: <code>#FF5733</code> is a warm orange-red.</p></article>
       <article class="know-card"><div class="know-icon">⚖️</div><h3>RGB vs HSL</h3><p>RGB controls light channels directly. HSL uses Hue (0–360°), Saturation (0–100%) and Lightness (0–100%) — much easier for programmatic adjustments like making a color 20% lighter.</p></article>
-      <article class="know-card"><div class="know-icon">🏭</div><h3>RAL Colors</h3><p>RAL is a European standard for paints and coatings. RAL Classic has 213 codes (e.g. RAL 3000 — Flame Red). RAL Design System+ extends this to 1,625+ colors by hue and lightness.</p></article>
-      <article class="know-card"><div class="know-icon">🎨</div><h3>Pantone &amp; NCS</h3><p>Pantone is the global print &amp; brand identity standard. NCS (Natural Color System) is based on human color perception. Both use HEX approximations for screen display.</p></article>
+      <article class="know-card"><div class="know-icon" style="display:flex;gap:8px;align-items:center;margin-bottom:10px"><img src="/logo-ral-classic.png" alt="RAL Classic" style="height:24px;width:auto;object-fit:contain"/><img src="/logo-ral-design.png" alt="RAL Design" style="height:24px;width:auto;object-fit:contain"/></div><h3>RAL Colors</h3><p>RAL is a European standard for paints and coatings. RAL Classic has 213 codes (e.g. RAL 3000 — Flame Red). RAL Design System+ extends this to 1,625+ colors by hue and lightness.</p></article>
+      <article class="know-card"><div class="know-icon" style="display:flex;gap:8px;align-items:center;margin-bottom:10px"><img src="/logo-pantone.png" alt="Pantone" style="height:24px;width:auto;object-fit:contain"/><img src="/logo-ncs.png" alt="NCS" style="height:24px;width:auto;object-fit:contain"/></div><h3>Pantone &amp; NCS</h3><p>Pantone is the global print &amp; brand identity standard. NCS (Natural Color System) is based on human color perception. Both use HEX approximations for screen display.</p></article>
       <article class="know-card"><div class="know-icon">🌈</div><h3>Complementary Colors</h3><p>A complementary color is directly opposite on the color wheel. Triadic colors are 120° and 240° apart on the HSL wheel — both form the basis of professional color systems.</p></article>
-      <article class="know-card"><div class="know-icon">✏️</div><h3>Use Colors in Canva</h3><p>Copy your HEX and paste it directly in Canva's color picker. Click any element → color swatch → paste HEX. <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=knowledge" target="_blank" rel="noopener sponsored" style="color:var(--purple);font-weight:700">Try Canva free →</a></p></article>
+      <article class="know-card"><div class="know-icon" style="display:flex;gap:6px;align-items:center;margin-bottom:10px">
+          <svg viewBox="0 0 80 32" style="height:28px;width:auto" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="kcg" x1="0" y1="0" x2="80" y2="32" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#38d6c8"/><stop offset="55%" stop-color="#7d5ef2"/><stop offset="100%" stop-color="#6c4aff"/>
+              </linearGradient>
+            </defs>
+            <circle cx="14" cy="10" r="7" fill="url(#kcg)" opacity="0.9"/>
+            <circle cx="21" cy="22" r="7" fill="url(#kcg)" opacity="0.75"/>
+            <circle cx="7"  cy="22" r="7" fill="url(#kcg)" opacity="0.6"/>
+            <circle cx="14" cy="17" r="4.5" fill="white" opacity="0.3"/>
+            <text x="36" y="22" font-family="Nunito,sans-serif" font-weight="800" font-size="18" fill="#212529">Canva</text>
+          </svg>
+        </div><h3>Use Colors in Canva</h3><p>Copy your HEX and paste it directly in Canva's color picker. Click any element → color swatch → paste HEX. <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=knowledge" target="_blank" rel="noopener sponsored" style="color:var(--purple);font-weight:700">Try Canva free →</a></p></article>
     </div>
   </section>
 
