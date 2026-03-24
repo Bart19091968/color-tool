@@ -147,13 +147,43 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); font
 
 /* Bottom CTA area */
 .mobile-menu-footer {
-  padding:24px 28px 40px;
+  padding:20px 28px 36px;
   display:flex; align-items:center; justify-content:space-between;
   border-top:1px solid rgba(0,0,0,0.07);
+  gap:16px;
 }
 .mobile-menu-footer-text {
-  font-size:13px; color:var(--text-mute); font-weight:600; line-height:1.4;
+  font-size:17px; color:var(--text-mid); font-weight:700; line-height:1.35;
 }
+
+/* Mobile menu accordion (Tools submenu) */
+.mobile-menu-accordion-btn {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:18px 28px; width:100%;
+  font-size:22px; font-weight:700; color:var(--text);
+  background:none; border:none; border-bottom:1px solid rgba(0,0,0,0.05);
+  cursor:pointer; font-family:var(--font); transition:color 0.15s;
+}
+.mobile-menu-accordion-btn:hover { color:var(--purple); }
+.mobile-menu-accordion-btn.open { color:var(--purple); border-bottom:none; }
+.mobile-menu-accordion-chevron { font-size:16px; opacity:0.4; transition:transform 0.2s; }
+.mobile-menu-accordion-btn.open .mobile-menu-accordion-chevron { transform:rotate(90deg); opacity:0.7; }
+.mobile-menu-submenu {
+  display:none; flex-direction:column;
+  background:rgba(121,80,242,0.04);
+  border-bottom:1px solid rgba(0,0,0,0.05);
+}
+.mobile-menu-submenu.open { display:flex; }
+.mobile-menu-sublink {
+  display:flex; align-items:center; gap:12px;
+  padding:14px 28px 14px 36px;
+  font-size:17px; font-weight:600; color:var(--text-mid);
+  text-decoration:none; transition:color 0.15s;
+  border-bottom:1px solid rgba(0,0,0,0.03);
+}
+.mobile-menu-sublink:last-child { border-bottom:none; }
+.mobile-menu-sublink:hover, .mobile-menu-sublink.active { color:var(--purple); }
+.mobile-menu-sublink-icon { font-size:15px; opacity:0.6; }
 
 /* Canva logo button — gradient circle */
 .canva-logo-btn {
@@ -258,6 +288,8 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); font
 }
 #eyedropBtn:hover { border-color:var(--purple); background:#ece9ff; box-shadow:var(--shadow-md); }
 #eyedropBtn.active { border-style:solid; border-color:var(--purple); background:var(--purple); color:#fff; cursor:wait; box-shadow:0 0 0 4px rgba(121,80,242,0.2); }
+#eyedropBtn .icon[data-active] { animation:iconPulse 0.8s ease-in-out infinite alternate; }
+@keyframes iconPulse { from { opacity:0.7; transform:scale(0.95); } to { opacity:1; transform:scale(1.05); } }
 #eyedropBtn .icon { font-size:26px; flex-shrink:0; }
 #eyedropBtn .btn-main { font-size:15px; }
 #eyedropBtn .btn-sub { font-size:12px; opacity:0.7; margin-top:1px; font-weight:500; }
@@ -423,14 +455,14 @@ details.faq[open] summary::after { content:"−"; }
 
   /* Shrink CTA to a compact gradient circle on mobile */
   .nav-cta {
-    width:38px; height:38px; border-radius:50%; padding:0;
+    width:40px; height:40px; min-width:40px; border-radius:50%; padding:0;
     justify-content:center; align-items:center;
     background:linear-gradient(135deg,#38d6c8 0%,#7d5ef2 60%,#6c4aff 100%);
     box-shadow:0 2px 10px rgba(121,80,242,0.4);
-    overflow:hidden;
+    overflow:visible; flex-shrink:0;
   }
   .nav-cta-text { display:none; }
-  .nav-cta-icon { display:flex !important; }
+  .nav-cta-icon { display:flex !important; width:26px !important; height:26px !important; }
 }
 @media (max-width:500px) {
   .chips { flex-direction:column; }

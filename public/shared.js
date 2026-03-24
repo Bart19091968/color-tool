@@ -229,7 +229,7 @@ async function activateEyedropper(){
   const icon=document.getElementById("eyedropIcon");
   const text=document.getElementById("eyedropText");
   const sub=document.getElementById("eyedropSub");
-  if(icon) icon.textContent="🔍";
+  if(icon) icon.setAttribute('data-active','1');
   if(text) text.textContent="Click on any color on your screen…";
   if(sub)  sub.textContent="Press ESC to cancel";
   showMsg("Move your cursor to the desired color and click","info");
@@ -243,7 +243,7 @@ async function activateEyedropper(){
     else clearMsg();
   } finally {
     if(btn) btn.classList.remove("active");
-    if(icon) icon.textContent="🖱️";
+    if(icon) icon.removeAttribute('data-active');
     if(text) text.textContent="Pick Color from Screen";
     if(sub)  sub.textContent="EyeDropper API — click anywhere on your screen";
   }

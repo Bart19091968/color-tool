@@ -66,10 +66,10 @@
     <div class="nav-right">
       <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=header" target="_blank" rel="noopener sponsored" class="nav-cta">
         <!-- Canva-style gradient circle — shown on mobile -->
-        <svg class="nav-cta-icon" style="display:none;width:22px;height:22px;flex-shrink:0" viewBox="0 0 36 36" fill="none">
+        <svg class="nav-cta-icon" style="display:none;width:26px;height:26px;flex-shrink:0" viewBox="0 0 36 36" fill="none">
           <circle cx="18" cy="18" r="18" fill="url(#ncg)"/>
           <defs><linearGradient id="ncg" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#38d6c8"/><stop offset="60%" stop-color="#7d5ef2"/><stop offset="100%" stop-color="#6c4aff"/></linearGradient></defs>
-          <text x="18" y="23" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="700" font-size="11" fill="white">Ca</text>
+          <text x="18" y="24" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="700" font-size="15" fill="white">C</text>
         </svg>
         <!-- Text — shown on desktop -->
         <span class="nav-cta-text">Try Canva Free</span>
@@ -80,14 +80,23 @@
     <div class="mobile-menu" id="mobileMenu">
       <button class="mobile-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
       <nav class="mobile-menu-nav">
-        <a href="/index.html" class="mobile-menu-link" onclick="closeMenu()">Pick from Screen<span class="mobile-menu-arrow">›</span></a>
-        <a href="/image.html" class="mobile-menu-link active">Tools<span class="mobile-menu-arrow">›</span></a>
+        <button class="mobile-menu-accordion-btn" id="toolsAccordion" onclick="toggleAccordion()" aria-expanded="false">
+          Tools <span class="mobile-menu-accordion-chevron">›</span>
+        </button>
+        <div class="mobile-menu-submenu" id="toolsSubmenu">
+          <a href="/index.html" class="mobile-menu-sublink" onclick="closeMenu()">
+            <span class="mobile-menu-sublink-icon">🖱️</span> Pick from Screen
+          </a>
+          <a href="/image.html" class="mobile-menu-sublink active" onclick="closeMenu()">
+            <span class="mobile-menu-sublink-icon">🖼️</span> Pick from Image
+          </a>
+        </div>
         <a href="#knowledge" class="mobile-menu-link" onclick="closeMenu()">Learn<span class="mobile-menu-arrow">›</span></a>
         <a href="#faq" class="mobile-menu-link" onclick="closeMenu()">FAQ<span class="mobile-menu-arrow">›</span></a>
         <a href="#resources" class="mobile-menu-link" onclick="closeMenu()">Resources<span class="mobile-menu-arrow">›</span></a>
       </nav>
       <div class="mobile-menu-footer">
-        <div class="mobile-menu-footer-text">Design with<br/>your color →</div>
+        <div class="mobile-menu-footer-text">Design with<br/>your color</div>
         <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=mobile-logo" target="_blank" rel="noopener sponsored" class="canva-logo-btn" title="Try Canva Free" onclick="closeMenu()">
         <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="27" cy="27" r="27" fill="url(#cg)"/>
@@ -112,9 +121,12 @@
   <h1>Pick Any Color<br>from an Image</h1>
   <p>Upload any photo, hover over it, and click any pixel to instantly identify the color name, HEX, RGB and HSL across 5 professional standards.</p>
   <div class="hero-actions">
-    <button class="hero-btn hero-btn-primary" onclick="document.getElementById('imgFile').click()">🖼️ Upload Image</button>
-    <a href="/index.html" class="hero-btn hero-btn-secondary">🖱️ Pick from Screen</a>
-    <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=hero" target="_blank" rel="noopener sponsored" class="hero-btn hero-btn-canva">✏️ Design with Canva</a>
+    <a href="/index.html" class="hero-btn hero-btn-secondary">Pick from Screen</a>
+    <a href="https://www.canva.com/?utm_source=coloranalyzer&utm_medium=affiliate&utm_campaign=hero" target="_blank" rel="noopener sponsored" class="hero-btn hero-btn-canva"><svg width="18" height="18" viewBox="0 0 36 36" fill="none" style="flex-shrink:0">
+          <circle cx="18" cy="18" r="18" fill="url(#hcg)"/>
+          <defs><linearGradient id="hcg" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#38d6c8"/><stop offset="55%" stop-color="#7d5ef2"/><stop offset="100%" stop-color="#ff6b6b"/></linearGradient></defs>
+          <text x="18" y="24" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="700" font-size="17" fill="white">C</text>
+        </svg> Design with Canva</a>
   </div>
 </section>
 
@@ -136,7 +148,42 @@
           ondragleave="handleDragLeave(event)"
           ondrop="handleDrop(event)"
           role="button" tabindex="0">
-          <div class="img-drop-icon">🖼️</div>
+          <div class="img-drop-icon" style="width:80px;height:80px;margin:0 auto 12px"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4c6ef5"/>
+      <stop offset="45%" stop-color="#7950f2"/>
+      <stop offset="100%" stop-color="#e64980"/>
+    </linearGradient>
+    <linearGradient id="drop2" x1="45" y1="25" x2="95" y2="95" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e8e8f0"/>
+      <stop offset="100%" stop-color="#c8c0e8"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="26" fill="url(#bg2)"/>
+  <!-- Photo frame -->
+  <rect x="16" y="28" width="62" height="52" rx="7" fill="white" opacity="0.92"/>
+  <!-- Sky -->
+  <rect x="16" y="28" width="62" height="28" rx="7" fill="#a8d8f0" opacity="0.8"/>
+  <!-- Sun -->
+  <circle cx="62" cy="40" r="7" fill="#f7b731" opacity="0.9"/>
+  <!-- Hills -->
+  <ellipse cx="32" cy="68" rx="22" ry="14" fill="#7950f2" opacity="0.6"/>
+  <ellipse cx="58" cy="72" rx="24" ry="12" fill="#40c057" opacity="0.7"/>
+  <rect x="16" y="62" width="62" height="18" rx="0" fill="#3cb371" opacity="0.4"/>
+  <rect x="16" y="72" width="62" height="8" rx="0" fill="white" opacity="0.92"/>
+  <!-- Eyedropper on top -->
+  <rect x="56" y="22" width="18" height="46" rx="9" transform="rotate(-45 65 45)" fill="url(#drop2)" opacity="0.97"/>
+  <rect x="30" y="70" width="11" height="7" rx="2.5" transform="rotate(-45 36 74)" fill="white" opacity="0.9"/>
+  <ellipse cx="84" cy="28" rx="9" ry="7.5" transform="rotate(-45 84 28)" fill="#7878a8" opacity="0.85"/>
+  <!-- Color dots -->
+  <rect x="18" y="88" width="9" height="9" rx="2" fill="#4ecdc4"/>
+  <rect x="29" y="88" width="9" height="9" rx="2" fill="#f7b731"/>
+  <rect x="18" y="99" width="9" height="9" rx="2" fill="#e64980"/>
+  <rect x="29" y="99" width="9" height="9" rx="2" fill="#7950f2"/>
+  <!-- Shine -->
+  <rect x="63" y="30" width="5" height="22" rx="2.5" transform="rotate(-45 65 41)" fill="white" opacity="0.28"/>
+</svg></div>
           <div class="img-drop-title">Click to upload or drag &amp; drop</div>
           <div class="img-drop-sub">JPG, PNG, WebP, GIF — any size</div>
         </div>
@@ -249,7 +296,33 @@
     <div>
       <div style="font-size:11px;color:var(--text-mute);text-align:center;margin-bottom:8px;font-weight:600">Or pick directly from screen:</div>
       <button id="eyedropBtn" onclick="activateEyedropper()" style="width:100%">
-        <span class="icon" id="eyedropIcon">🖱️</span>
+        <span class="icon" id="eyedropIcon" style="width:52px;height:52px;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+  <defs>
+    <linearGradient id="bg1" x1="0" y1="0" x2="120" y2="120" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#4c6ef5"/>
+      <stop offset="45%" stop-color="#7950f2"/>
+      <stop offset="100%" stop-color="#e64980"/>
+    </linearGradient>
+    <linearGradient id="drop1" x1="30" y1="20" x2="90" y2="100" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#e8e8f0"/>
+      <stop offset="100%" stop-color="#c8c0e8"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="26" fill="url(#bg1)"/>
+  <!-- Eyedropper body -->
+  <rect x="50" y="28" width="22" height="52" rx="11" transform="rotate(-45 61 54)" fill="url(#drop1)" opacity="0.95"/>
+  <!-- Dropper tip -->
+  <rect x="22" y="72" width="14" height="8" rx="3" transform="rotate(-45 29 76)" fill="white" opacity="0.9"/>
+  <!-- Top cap -->
+  <ellipse cx="79" cy="32" rx="11" ry="9" transform="rotate(-45 79 32)" fill="#7878a8" opacity="0.85"/>
+  <!-- Color sample dots -->
+  <rect x="18" y="88" width="9" height="9" rx="2" fill="#4ecdc4"/>
+  <rect x="29" y="88" width="9" height="9" rx="2" fill="#f7b731"/>
+  <rect x="18" y="99" width="9" height="9" rx="2" fill="#e64980"/>
+  <rect x="29" y="99" width="9" height="9" rx="2" fill="#7950f2"/>
+  <!-- Light shine -->
+  <rect x="56" y="34" width="6" height="28" rx="3" transform="rotate(-45 59 48)" fill="white" opacity="0.3"/>
+</svg></span>
         <div>
           <div class="btn-main" id="eyedropText">Pick Color from Screen</div>
           <div class="btn-sub" id="eyedropSub">EyeDropper API — Chrome &amp; Edge only</div>
@@ -374,6 +447,13 @@
   initEyedropper();
   loadColors();
 
+  function toggleAccordion() {
+    const btn = document.getElementById('toolsAccordion');
+    const sub = document.getElementById('toolsSubmenu');
+    btn.classList.toggle('open');
+    sub.classList.toggle('open');
+    btn.setAttribute('aria-expanded', btn.classList.contains('open'));
+  }
   function toggleMenu() {
     const menu = document.getElementById('mobileMenu');
     const btn = document.getElementById('hamburger');
