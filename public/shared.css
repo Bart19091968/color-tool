@@ -76,9 +76,9 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); font
   background:#fff; border:2px solid var(--border); border-radius:12px;
   box-shadow:var(--shadow-lg); min-width:196px; padding:6px;
   opacity:0; pointer-events:none; transform:translateY(-6px);
-  transition:all 0.18s; z-index:300;
+  transition:opacity 0.18s, transform 0.18s; transition-delay:0.18s; z-index:300;
 }
-.nav-dropdown:hover .nav-dropdown-menu { opacity:1; pointer-events:all; transform:translateY(0); }
+.nav-dropdown:hover .nav-dropdown-menu { opacity:1; pointer-events:all; transform:translateY(0); transition-delay:0s; }
 .nav-dropdown-item {
   display:flex; align-items:center; gap:10px;
   padding:9px 12px; border-radius:8px;
