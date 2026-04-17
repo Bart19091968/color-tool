@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QHSKK05QZF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-QHSKK05QZF');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The EyeDropper API: How to Pick Colors from Your Screen Online | Coloralyze</title>
+  <meta name="description" content="Everything you need to know about the browser EyeDropper API — what it is, which browsers support it, and how to use it to pick any color from your screen." />
+  <meta name="keywords" content="eyedropper api, eyedropper tool online, pick color from screen chrome, eyedropper chrome edge" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://coloralyze.com/blog/eyedropper-api-guide" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="The EyeDropper API: How to Pick Colors from Your Screen Online | Coloralyze" />
+  <meta property="og:description" content="Everything you need to know about the browser EyeDropper API — what it is, which browsers support it, and how to use it to pick any color from your screen." />
+  <meta property="og:url" content="https://coloralyze.com/blog/eyedropper-api-guide" />
+  <meta property="og:site_name" content="Coloralyze" />
+  <meta property="og:image" content="https://coloralyze.com/og-home.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The EyeDropper API: How to Pick Colors from Your Screen Online | Coloralyze" />
+  <meta name="twitter:description" content="Everything you need to know about the browser EyeDropper API — what it is, which browsers support it, and how to use it to pick any color from your screen." />
+  <meta name="twitter:image" content="https://coloralyze.com/og-home.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The EyeDropper API: How to Pick Colors from Your Screen Online",
+    "description": "Everything you need to know about the browser EyeDropper API — what it is, which browsers support it, and how to use it to pick any color from your screen.",
+    "url": "https://coloralyze.com/blog/eyedropper-api-guide",
+    "datePublished": "2025-02-10",
+    "dateModified": "2025-02-10",
+    "author": {"@type": "Organization", "name": "Coloralyze"},
+    "publisher": {"@type": "Organization", "name": "Coloralyze", "url": "https://coloralyze.com"},
+    "image": "https://coloralyze.com/og-home.png"
+  }
+  </script>
+  <script type="application/ld+json">{
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Coloralyze","item":"https://coloralyze.com/"},      {"@type":"ListItem","position":2,"name":"Blog","item":"https://coloralyze.com/blog"},      {"@type":"ListItem","position":3,"name":"The EyeDropper API: How to Pick Colors from Your Screen Online","item":"https://coloralyze.com"}
+    ]
+  }</script>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" as="style" />
+  <link rel="preload" href="/shared.min.css" as="style" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/shared.min.css" />
+  <style>
+    /* Landing page extras */
+    .lp-hero { background:linear-gradient(135deg,#7950f2 0%,#4c6ef5 50%,#00b4d8 100%); padding:56px 24px 64px; text-align:center; position:relative; overflow:hidden; }
+    .lp-hero::before { content:""; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/svg%3E"); pointer-events:none; }
+    .lp-hero h1 { font-size:clamp(24px,5vw,44px); font-weight:800; color:#fff; line-height:1.15; letter-spacing:-0.5px; margin-bottom:12px; position:relative; }
+    .lp-hero p { font-size:clamp(14px,2vw,17px); color:rgba(255,255,255,0.85); max-width:520px; margin:0 auto 24px; font-weight:500; position:relative; }
+    .lp-hero-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.18); color:#fff; backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.3); border-radius:50px; padding:5px 16px; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:16px; position:relative; }
+    .lp-wrap { max-width:1200px; margin:0 auto; padding:36px 24px 80px; display:grid; grid-template-columns:1fr 300px; gap:24px; }
+    @media(max-width:860px) { .lp-wrap { grid-template-columns:1fr; padding:20px 16px 60px; } }
+    .lp-main { display:flex; flex-direction:column; gap:20px; }
+    .lp-sidebar { display:flex; flex-direction:column; gap:16px; }
+    .color-table { width:100%; border-collapse:collapse; font-size:13px; }
+    .color-table th { background:var(--bg2); padding:8px 12px; text-align:left; font-size:11px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-mute); border-bottom:2px solid var(--border); }
+    .color-table td { padding:7px 12px; border-bottom:1px solid var(--border); vertical-align:middle; }
+    .color-table tr:hover td { background:var(--purple-lt); }
+    .color-swatch-cell { width:32px; height:32px; border-radius:7px; display:inline-block; border:1px solid rgba(0,0,0,0.08); cursor:pointer; transition:transform 0.1s; }
+    .color-swatch-cell:hover { transform:scale(1.15); }
+    .table-wrap { max-height:520px; overflow-y:auto; border:1px solid var(--border); border-radius:var(--r); }
+    .search-bar { display:flex; gap:8px; margin-bottom:12px; }
+    .search-bar input { flex:1; background:var(--bg); border:2px solid var(--border); border-radius:9px; padding:9px 14px; font-family:var(--font); font-size:14px; outline:none; }
+    .search-bar input:focus { border-color:var(--purple); }
+    .copy-toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:var(--purple); color:#fff; font-family:var(--font); font-weight:700; font-size:14px; padding:10px 24px; border-radius:50px; box-shadow:0 4px 20px rgba(0,0,0,0.2); opacity:0; transition:opacity 0.2s; pointer-events:none; z-index:999; }
+    .copy-toast.show { opacity:1; }
+    .prose h2 { font-size:22px; font-weight:800; color:var(--text); margin:32px 0 12px; }
+    .prose h3 { font-size:17px; font-weight:800; color:var(--text); margin:24px 0 8px; }
+    .prose p { font-size:15px; color:var(--text-mid); line-height:1.8; margin-bottom:14px; }
+    .prose ul { font-size:15px; color:var(--text-mid); line-height:1.9; padding-left:20px; margin-bottom:14px; }
+    .prose li { margin-bottom:4px; }
+    .prose a { color:var(--purple); font-weight:600; text-decoration:none; }
+    .prose a:hover { text-decoration:underline; }
+    .prose strong { color:var(--text); font-weight:800; }
+    .prose code { background:var(--bg2); border:1px solid var(--border); border-radius:4px; padding:1px 6px; font-size:13px; }
+    .cta-box { background:linear-gradient(135deg,var(--purple-lt),#e8f4ff); border:2px solid var(--purple-mid); border-radius:var(--r-lg); padding:24px; margin:24px 0; text-align:center; }
+    .cta-box h3 { font-size:18px; font-weight:800; color:var(--purple-dk); margin-bottom:8px; }
+    .cta-box p { font-size:14px; color:var(--text-mid); margin-bottom:16px; }
+    .cta-box a { display:inline-flex; align-items:center; gap:8px; background:var(--purple); color:#fff; font-family:var(--font); font-weight:800; font-size:14px; padding:11px 24px; border-radius:9px; text-decoration:none; transition:all 0.2s; }
+    .cta-box a:hover { background:var(--purple-dk); transform:translateY(-1px); }
+    .info-badge { display:inline-flex; align-items:center; gap:6px; background:var(--purple-lt); border:1px solid var(--purple-mid); color:var(--purple-dk); border-radius:6px; padding:4px 10px; font-size:12px; font-weight:700; margin-bottom:16px; }
+    .stat-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:10px; margin:16px 0; }
+    .stat-item { background:var(--card); border:2px solid var(--border); border-radius:var(--r); padding:14px; text-align:center; }
+    .stat-num { font-size:24px; font-weight:800; color:var(--purple); }
+    .stat-label { font-size:11px; color:var(--text-mute); font-weight:600; margin-top:3px; }
+  </style>
+</head>
+<body>
+<header class="header">
+  <div class="header-inner">
+    <button class="nav-hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="/" class="logo" aria-label="ColorAlyze home">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="18" cy="10" r="7" fill="#7950f2" opacity="0.9"/>
+        <circle cx="26" cy="23" r="7" fill="#4c6ef5" opacity="0.9"/>
+        <circle cx="10" cy="23" r="7" fill="#00b4d8" opacity="0.9"/>
+        <circle cx="18" cy="18" r="5" fill="white" opacity="0.25"/>
+      </svg>
+      <span class="logo-text">Color<span>Alyze</span></span>
+    </a>
+    <nav class="header-nav" aria-label="Main navigation">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-btn">Tools <span class="chevron">▾</span></button>
+        <div class="nav-dropdown-menu" role="menu">
+          <a href="/" class="nav-dropdown-item" role="menuitem"><span class="item-icon">🖱️</span> Pick from Screen</a>
+          <a href="/image" class="nav-dropdown-item" role="menuitem"><span class="item-icon">🖼️</span> Pick from Image</a>
+        </div>
+      </div>
+      <a href="#" class="nav-link" id="navStandards" style="display:none">Standards</a>
+      <a href="/blog" class="nav-link">Learn</a>
+      <a href="/#faq" class="nav-link">FAQ</a>
+      <a href="/#resources" class="nav-link">Resources</a>
+    </nav>
+    <div class="nav-right">
+      <a href="https://www.canva.com/?utm_source=coloralyze&utm_medium=affiliate&utm_campaign=header" target="_blank" rel="noopener sponsored" class="nav-cta">
+        <svg class="nav-cta-icon" style="display:none;width:26px;height:26px;flex-shrink:0" viewBox="0 0 36 36" fill="none">
+          <circle cx="18" cy="18" r="18" fill="url(#ncg)"/>
+          <defs><linearGradient id="ncg" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#38d6c8"/><stop offset="55%" stop-color="#7d5ef2"/><stop offset="100%" stop-color="#6c4aff"/></linearGradient></defs>
+          <text x="18" y="24" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="700" font-size="15" fill="white">C</text>
+        </svg>
+        <span class="nav-cta-text">Try Canva Free</span>
+      </a>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <button class="mobile-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
+      <nav class="mobile-menu-nav">
+        <button class="mobile-menu-accordion-btn" id="toolsAccordion" onclick="toggleAccordion()" aria-expanded="false">
+          Tools <span class="mobile-menu-accordion-chevron">›</span>
+        </button>
+        <div class="mobile-menu-submenu" id="toolsSubmenu">
+          <a href="/" class="mobile-menu-sublink" onclick="closeMenu()"><span class="mobile-menu-sublink-icon">🖱️</span> Pick from Screen</a>
+          <a href="/image" class="mobile-menu-sublink" onclick="closeMenu()"><span class="mobile-menu-sublink-icon">🖼️</span> Pick from Image</a>
+        </div>
+        <a href="/blog" class="mobile-menu-link" onclick="closeMenu()">Learn<span class="mobile-menu-arrow">›</span></a>
+        <a href="/#faq" class="mobile-menu-link" onclick="closeMenu()">FAQ<span class="mobile-menu-arrow">›</span></a>
+        <a href="/#resources" class="mobile-menu-link" onclick="closeMenu()">Resources<span class="mobile-menu-arrow">›</span></a>
+      </nav>
+      <div class="mobile-menu-footer">
+        <div class="mobile-menu-footer-text">Design with<br/>your color</div>
+        <a href="https://www.canva.com/?utm_source=coloralyze&utm_medium=affiliate&utm_campaign=mobile-logo" target="_blank" rel="noopener sponsored" class="canva-logo-btn" title="Try Canva Free" onclick="closeMenu()">
+          <svg viewBox="0 0 54 54" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="27" cy="27" r="27" fill="url(#cg)"/>
+            <defs><linearGradient id="cg" x1="0" y1="0" x2="54" y2="54" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#38d6c8"/><stop offset="60%" stop-color="#7d5ef2"/><stop offset="100%" stop-color="#6c4aff"/></linearGradient></defs>
+            <text x="27" y="32" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-weight="700" font-size="16" fill="white" letter-spacing="-0.5">Canva</text>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+<nav aria-label="Breadcrumb" style="max-width:1200px;margin:0 auto;padding:12px 24px 0;font-size:13px;color:var(--text-mute)"><a href="/" style="color:var(--purple);text-decoration:none">Coloralyze</a> › <a href="/blog" style="color:var(--purple);text-decoration:none">Blog</a> › <span>The EyeDropper API: How to Pick Colors from Your Screen Online</span></nav>
+
+<div class="lp-hero" style="padding:40px 24px 48px">
+  <div class="lp-hero-badge">✦ 5 min read</div>
+  <h1 style="font-size:clamp(22px,4vw,38px)">The EyeDropper API: How to Pick Colors from Your Screen Online</h1>
+  <p style="font-size:13px;color:rgba(255,255,255,0.7)">Published 2025-02-10 · Coloralyze</p>
+</div>
+<div class="lp-wrap">
+  <div class="lp-main">
+    <div class="card"><div class="card-pad">
+      
+<div class="prose">
+<p>The EyeDropper API is a modern browser feature that lets web applications pick colors from anywhere on your screen — including outside the browser window. Here is everything you need to know about it.</p>
+
+<h2>What is the EyeDropper API?</h2>
+<p>The EyeDropper API (formally the <a href="https://wicg.github.io/eyedropper-api/" target="_blank" rel="noopener">WICG EyeDropper specification</a>) is a web standard that gives websites secure, permission-based access to pick colors from the user's screen using a native color sampling tool.</p>
+<p>Before this API, web tools had to use browser extensions, screen capture or clunky workarounds to achieve the same result. The EyeDropper API makes it a native, zero-install, one-click experience.</p>
+
+<h2>Which browsers support it?</h2>
+<p>As of 2025, the EyeDropper API is supported in:</p>
+<ul>
+  <li><strong>Chrome 95+</strong> (October 2021) — full support</li>
+  <li><strong>Edge 95+</strong> (October 2021) — full support</li>
+  <li><strong>Opera 81+</strong> — full support</li>
+  <li><strong>Firefox</strong> — not yet supported</li>
+  <li><strong>Safari</strong> — not yet supported</li>
+</ul>
+<p>On unsupported browsers, Coloralyze falls back to the native color picker (the 🎨 button in the top right of the color swatch), which still lets you pick any color — just without the ability to click outside the browser window.</p>
+
+<h2>How does it work on Coloralyze?</h2>
+<ul>
+  <li>Click the <strong>Pick Color from Screen</strong> button</li>
+  <li>Your browser asks for permission (first use only on some systems)</li>
+  <li>Your cursor changes to a crosshair with a magnified color preview</li>
+  <li>Move to any pixel on your screen — a preview shows the current color</li>
+  <li>Click to capture. The color instantly appears in Coloralyze</li>
+  <li>Press <strong>ESC</strong> to cancel without picking</li>
+</ul>
+
+<h2>What can you pick colors from?</h2>
+<p>The EyeDropper API captures from the full screen, including:</p>
+<ul>
+  <li>Any webpage or web application</li>
+  <li>PDF files open in the browser</li>
+  <li>Desktop applications (Photoshop, Figma, Word)</li>
+  <li>Videos and streams playing in the browser</li>
+  <li>Wallpapers and desktop elements</li>
+  <li>Other browser tabs</li>
+</ul>
+
+<h2>Privacy and security</h2>
+<p>The EyeDropper API requires a user gesture (a button click) to activate. The browser shows a clear visual indicator that screen sampling is active. You can cancel at any time with ESC. No screenshot or screen data is stored — only the single pixel you click is captured.</p>
+
+<h2>Combine with Pantone, RAL or NCS</h2>
+<p>After picking a color from your screen, switch the Coloralyze standard selector to <strong>Pantone</strong>, <strong>RAL Classic</strong> or <strong>NCS</strong> to identify the nearest professional color name. This is especially useful for brand analysis, interior design reference and product color matching.</p>
+</div>
+
+    </div></div>
+    <div class="card"><div class="card-pad">
+      <div class="card-title">Continue Reading</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <a href="/blog/ral-classic-vs-ral-design" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;font-weight:600;color:var(--purple);text-decoration:none">RAL Classic vs RAL Design: What's the Difference?<span style="color:var(--text-lt)">→</span></a><a href="/blog/how-to-find-pantone-from-photo" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;font-weight:600;color:var(--purple);text-decoration:none">How to Find the Pantone Color of Any Photo<span style="color:var(--text-lt)">→</span></a><a href="/blog/what-is-ncs-color-system" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;font-weight:600;color:var(--purple);text-decoration:none">What is the NCS Color System and How is it Used in Interior Design?<span style="color:var(--text-lt)">→</span></a><a href="/blog/how-to-use-hex-in-canva" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;font-weight:600;color:var(--purple);text-decoration:none">How to Use HEX Color Codes in Canva — Step by Step<span style="color:var(--text-lt)">→</span></a><a href="/blog/complete-guide-color-standards" style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:14px;font-weight:600;color:var(--purple);text-decoration:none">The Complete Guide to Color Standards: CSS, RAL, Pantone and NCS<span style="color:var(--text-lt)">→</span></a>
+      </div>
+    </div></div>
+  </div>
+  <aside class="lp-sidebar">
+    <div class="canva-card">
+      <div class="canva-card-logo">
+        <svg viewBox="0 0 36 36" fill="none" style="width:26px;height:26px"><circle cx="18" cy="10" r="7" fill="white" opacity="0.9"/><circle cx="26" cy="23" r="7" fill="white" opacity="0.7"/><circle cx="10" cy="23" r="7" fill="white" opacity="0.55"/></svg>
+        <span class="canva-card-logo-text">Canva</span>
+      </div>
+      <h3>Use your color in a design</h3>
+      <p>Found the perfect color? Bring it to life in Canva — free for everyone.</p>
+      <div class="canva-features">
+        <div class="canva-feat">Paste your HEX code directly</div>
+        <div class="canva-feat">Social posts, presentations &amp; more</div>
+        <div class="canva-feat">Free forever — no credit card</div>
+      </div>
+      <a href="https://www.canva.com/?utm_source=coloralyze&utm_medium=affiliate&utm_campaign=sidebar" target="_blank" rel="noopener sponsored" class="canva-btn">Open Canva Free →</a>
+    </div>
+    <div class="card"><div class="card-pad" style="padding:16px">
+      <div style="font-size:14px;font-weight:800;margin-bottom:10px">Color Tools</div>
+      <a href="/" style="display:block;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-weight:600;color:var(--purple);text-decoration:none">Pick from Screen →</a>
+      <a href="/image" style="display:block;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-weight:600;color:var(--purple);text-decoration:none">Pick from Image →</a>
+      <a href="/pantone-color-finder" style="display:block;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;font-weight:600;color:var(--purple);text-decoration:none">Pantone Finder →</a>
+      <a href="/ral-classic-colors" style="display:block;padding:8px 0;font-size:13px;font-weight:600;color:var(--purple);text-decoration:none">RAL Classic Chart →</a>
+    </div></div>
+  </aside>
+</div>
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <svg viewBox="0 0 36 36" fill="none" style="width:28px;height:28px"><circle cx="18" cy="10" r="7" fill="#7950f2" opacity="0.9"/><circle cx="26" cy="23" r="7" fill="#4c6ef5" opacity="0.8"/><circle cx="10" cy="23" r="7" fill="#00b4d8" opacity="0.7"/></svg>
+          <span class="footer-logo-text">Color<span>Alyze</span></span>
+        </div>
+        <p style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:7px;max-width:260px">Free color tool — CSS, RAL, Pantone &amp; NCS. 1,165 named colors.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/">Pick from Screen</a>
+        <a href="/image">Pick from Image</a>
+        <a href="/pantone-color-finder">Pantone</a>
+        <a href="/ral-classic-colors">RAL Classic</a>
+        <a href="/ral-design-colors">RAL Design</a>
+        <a href="/ncs-colors">NCS</a>
+        <a href="/css-color-names">CSS Colors</a>
+        <a href="/blog">Blog</a>
+        <a href="/api/colors">API</a>
+        <a href="https://www.canva.com/?utm_source=coloralyze&utm_medium=affiliate&utm_campaign=footer" target="_blank" rel="noopener sponsored" style="color:var(--purple-mid)">Try Canva →</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Coloralyze · Free color identification tool · Not affiliated with Canva Pty Ltd.</p>
+      <p class="footer-disc">Affiliate Disclosure: Canva links are affiliate links. We may earn a small commission if you sign up, at no cost to you.</p>
+    </div>
+  </div>
+</footer>
+<script>
+  function toggleAccordion() {
+    const btn = document.getElementById('toolsAccordion');
+    const sub = document.getElementById('toolsSubmenu');
+    btn.classList.toggle('open'); sub.classList.toggle('open');
+    btn.setAttribute('aria-expanded', btn.classList.contains('open'));
+  }
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const btn  = document.getElementById('hamburger');
+    menu.classList.toggle('open'); btn.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('mobileMenu').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('click', e => {
+    const menu = document.getElementById('mobileMenu');
+    const btn  = document.getElementById('hamburger');
+    if (menu && menu.classList.contains('open') && !menu.contains(e.target) && !btn.contains(e.target)) closeMenu();
+  });
+</script>
+</body>
+</html>
