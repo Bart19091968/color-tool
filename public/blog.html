@@ -40,19 +40,22 @@
       {"@type":"ListItem","position":1,"name":"Coloralyze","item":"https://coloralyze.com/"},      {"@type":"ListItem","position":2,"name":"Blog","item":"https://coloralyze.com"}
     ]
   }</script>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" as="style" />
-  <link rel="preload" href="/shared.min.css" as="style" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400&display=swap" as="style" />
+  <link rel="preload" href="/shared.min.css?v=20250418" as="style" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="/shared.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/shared.min.css?v=20250418" />
   <style>
     /* Landing page extras */
-    .lp-hero { background:linear-gradient(135deg,#7950f2 0%,#4c6ef5 50%,#00b4d8 100%); padding:56px 24px 64px; text-align:center; position:relative; overflow:hidden; }
-    .lp-hero::before { content:""; position:absolute; inset:0; background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.06'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/svg%3E"); pointer-events:none; }
-    .lp-hero h1 { font-size:clamp(24px,5vw,44px); font-weight:800; color:#fff; line-height:1.15; letter-spacing:-0.5px; margin-bottom:12px; position:relative; }
-    .lp-hero p { font-size:clamp(14px,2vw,17px); color:rgba(255,255,255,0.85); max-width:520px; margin:0 auto 24px; font-weight:500; position:relative; }
-    .lp-hero-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,0.18); color:#fff; backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.3); border-radius:50px; padding:5px 16px; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:16px; position:relative; }
+    .lp-hero{background:radial-gradient(ellipse 70% 65% at 10% 75%,rgba(255,145,115,.28) 0%,transparent 100%),radial-gradient(ellipse 65% 60% at 90% 25%,rgba(125,185,255,.22) 0%,transparent 100%),radial-gradient(ellipse 55% 55% at 55% 105%,rgba(255,210,65,.2) 0%,transparent 100%),radial-gradient(ellipse 45% 40% at 32% -5%,rgba(200,155,255,.14) 0%,transparent 100%),#fff; padding:80px 24px 88px; text-align:center; position:relative; overflow:hidden; }
+    .lp-hero::before{content:"";position:absolute;inset:0;pointer-events:none}
+    .lp-hero h1{font-size:clamp(28px,5.5vw,54px);font-weight:900;color:#1a1a1a; line-height:1.15; letter-spacing:-0.5px; margin-bottom:12px; position:relative; }
+    .lp-hero p { font-size:clamp(14px,2vw,17px); color:#555; max-width:520px; margin:0 auto 24px; font-weight:500; position:relative; }
+    .lp-hero-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(0,0,0,.06);color:#555;border:1px solid rgba(0,0,0,.1); border-radius:50px; padding:5px 16px; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:16px; position:relative; }
+    .lp-hero .hero-btn-secondary{background:rgba(0,0,0,.06);color:#1a1a1a;border-color:rgba(0,0,0,.15);backdrop-filter:none}
+    .lp-hero .hero-btn-secondary:hover{background:rgba(0,0,0,.1)}
+    .lp-hero .hero-btn-primary,.lp-hero .hero-btn-secondary{border-radius:50px;padding:15px 30px;font-size:15px}
     .lp-wrap { max-width:1200px; margin:0 auto; padding:36px 24px 80px; display:grid; grid-template-columns:1fr 300px; gap:24px; }
     @media(max-width:860px) { .lp-wrap { grid-template-columns:1fr; padding:20px 16px 60px; } }
     .lp-main { display:flex; flex-direction:column; gap:20px; }
@@ -81,7 +84,7 @@
     .cta-box { background:linear-gradient(135deg,var(--purple-lt),#e8f4ff); border:2px solid var(--purple-mid); border-radius:var(--r-lg); padding:24px; margin:24px 0; text-align:center; }
     .cta-box h3 { font-size:18px; font-weight:800; color:var(--purple-dk); margin-bottom:8px; }
     .cta-box p { font-size:14px; color:var(--text-mid); margin-bottom:16px; }
-    .cta-box a { display:inline-flex; align-items:center; gap:8px; background:var(--purple); color:#fff; font-family:var(--font); font-weight:800; font-size:14px; padding:11px 24px; border-radius:9px; text-decoration:none; transition:all 0.2s; }
+    .cta-box a{ display:inline-flex; align-items:center; gap:8px; background:var(--purple); color:#fff; font-family:var(--font); font-weight:800; font-size:14px; padding:11px 24px; border-radius:50px; text-decoration:none; transition:all 0.2s; }
     .cta-box a:hover { background:var(--purple-dk); transform:translateY(-1px); }
     .info-badge { display:inline-flex; align-items:center; gap:6px; background:var(--purple-lt); border:1px solid var(--purple-mid); color:var(--purple-dk); border-radius:6px; padding:4px 10px; font-size:12px; font-weight:700; margin-bottom:16px; }
     .stat-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(120px,1fr)); gap:10px; margin:16px 0; }
@@ -98,9 +101,9 @@
     </button>
     <a href="/" class="logo" aria-label="ColorAlyze home">
       <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <circle cx="18" cy="10" r="7" fill="#FA0F00" opacity="0.9"/>
+        <circle cx="18" cy="10" r="7" fill="#FA2719" opacity="0.9"/>
         <circle cx="26" cy="23" r="7" fill="#FF8A00" opacity="0.9"/>
-        <circle cx="10" cy="23" r="7" fill="#FA0F00" opacity="0.9"/>
+        <circle cx="10" cy="23" r="7" fill="#FA2719" opacity="0.9"/>
         <circle cx="18" cy="18" r="5" fill="white" opacity="0.25"/>
       </svg>
       <span class="logo-text">Color<span>Alyze</span></span>
@@ -292,7 +295,7 @@
     <div class="footer-top">
       <div>
         <div class="footer-logo">
-          <svg viewBox="0 0 36 36" fill="none" style="width:28px;height:28px"><circle cx="18" cy="10" r="7" fill="#FA0F00" opacity="0.9"/><circle cx="26" cy="23" r="7" fill="#FF8A00" opacity="0.8"/><circle cx="10" cy="23" r="7" fill="#FA0F00" opacity="0.7"/></svg>
+          <svg viewBox="0 0 36 36" fill="none" style="width:28px;height:28px"><circle cx="18" cy="10" r="7" fill="#FA2719" opacity="0.9"/><circle cx="26" cy="23" r="7" fill="#FF8A00" opacity="0.8"/><circle cx="10" cy="23" r="7" fill="#FA2719" opacity="0.7"/></svg>
           <span class="footer-logo-text">Color<span>Alyze</span></span>
         </div>
         <p style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:7px;max-width:260px">Free color tool — CSS, RAL, Pantone &amp; NCS. 1,165 named colors.</p>
