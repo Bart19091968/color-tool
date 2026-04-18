@@ -85,8 +85,8 @@
       },
       {
         "@type": "Question",
-        "name": "How do I use a HEX color code in Canva?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Copy your HEX code from Coloralyze by clicking the HEX chip. In Canva, select any element, click its color swatch in the toolbar, and paste the HEX code in the color input field at the bottom. Canva is free at canva.com." }
+        "name": "How do I use a HEX color code in Adobe Express?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Copy your HEX code from Coloralyze by clicking the HEX chip. In Adobe Express, select any element, click its color swatch in the toolbar, and paste the HEX code in the color input field. Adobe Express is free at adobe.com/express." }
       },
       {
         "@type": "Question",
@@ -106,11 +106,11 @@
     ]
   }
   </script>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" as="style" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400&display=swap&display=swap" as="style" />
   <link rel="preload" href="/shared.min.css" as="style" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;0,800;0,900;1,400&display=swap&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/shared.min.css" />
 </head>
 <body>
@@ -194,13 +194,9 @@
   <div class="hero-badge">✦ Free Color Tool — 1,165 Named Colors</div>
   <h1>Pick Any Color<br>from Your Screen</h1>
   <p>Click anywhere on your screen and instantly identify the color name, HEX, RGB and HSL across 5 professional color standards.</p>
-  <div class="hero-actions">
-    <a href="/image.html" class="hero-btn hero-btn-secondary">Pick from Image</a>
-    <a href="https://www.adobe.com/express/" target="_blank" rel="noopener sponsored" class="hero-btn hero-btn-adobe"><img src="/logo-adobe.png" width="18" height="18" alt="Adobe Express" style="width:18px;height:18px;flex-shrink:0"/> Design with Adobe Express</a>
-  
-      <div class="res-card"><div class="res-icon"><img src="/logo-canva.png" width="32" height="32" alt="Canva" style="width:32px;height:32px"/></div><div class="res-name">Canva</div><div class="res-desc">Also a great free design tool. 250k+ templates, easy for beginners.</div><a href="https://www.canva.com/" target="_blank" rel="noopener" class="res-link">Visit →</a></div>
-      <div class="res-card"><div class="res-icon">🎨</div><div class="res-name">Figma (Free)</div><div class="res-desc">Professional UI and graphic design tool. Generous free plan for individuals.</div><a href="https://www.figma.com/" target="_blank" rel="noopener" class="res-link">Visit →</a></div>
-      <div class="res-card"><div class="res-icon">🖼️</div><div class="res-name">Pixlr</div><div class="res-desc">Free online photo editor. Good Photoshop alternative for quick edits.</div><a href="https://pixlr.com/" target="_blank" rel="noopener" class="res-link">Visit →</a></div>
+  <div class="hero-actions" style="justify-content:center">
+    <button onclick="document.getElementById('eyedropBtn').scrollIntoView({behavior:'smooth'});setTimeout(()=>document.getElementById('eyedropBtn').click(),400)" class="hero-btn hero-btn-primary">Pick Color from Screen</button>
+    <a href="https://www.adobe.com/express/" target="_blank" rel="noopener sponsored" class="hero-btn hero-btn-adobe"><img src="/logo-adobe.png" width="18" height="18" alt="Adobe Express" style="width:18px;height:18px;flex-shrink:0"/> Design with Adobe Express</a><div class="res-name">Pixlr</div><div class="res-desc">Free online photo editor. Good Photoshop alternative for quick edits.</div><a href="https://pixlr.com/" target="_blank" rel="noopener" class="res-link">Visit →</a></div>
     </div>
 </section>
 
@@ -344,11 +340,11 @@
 
     <div class="card"><div class="card-pad" style="padding:16px">
       <div style="font-size:14px;font-weight:800;color:var(--text);margin-bottom:8px">Need More Design Power?</div>
-      <p style="font-size:13px;color:var(--text-mid);margin-bottom:12px;line-height:1.6">Canva Pro gives you brand palettes, premium fonts and 100M+ assets.</p>
+      <p style="font-size:13px;color:var(--text-mid);margin-bottom:12px;line-height:1.6">Adobe Express Premium unlocks brand palettes, premium fonts and thousands of Adobe Stock assets.</p>
       <a href="https://www.adobe.com/express/" target="_blank" rel="noopener sponsored"
         style="display:flex;align-items:center;justify-content:space-between;background:var(--purple-lt);border:2px solid var(--purple-mid);border-radius:10px;padding:12px 14px;text-decoration:none;transition:all 0.2s"
-        onmouseover="this.style.background='#ddd6fe'" onmouseout="this.style.background='var(--purple-lt)'">
-        <div><div style="font-weight:800;font-size:13px;color:var(--purple-dk)">Try Canva Pro</div><div style="font-size:11px;color:var(--text-mute);margin-top:1px">30-day free trial</div></div>
+        onmouseover="this.style.background='#FFE5E2'" onmouseout="this.style.background='var(--purple-lt)'">
+        <div><div style="font-weight:800;font-size:13px;color:var(--purple-dk)">Try Adobe Express Premium</div><div style="font-size:11px;color:var(--text-mute);margin-top:1px">30-day free trial</div></div>
         <span style="font-size:18px;font-weight:800;color:var(--purple)">→</span>
       </a>
     </div></div>
@@ -363,7 +359,7 @@
       <article class="know-card"><div class="know-icon" style="display:flex;gap:8px;align-items:center;margin-bottom:10px"><img loading="lazy" src="/logo-ral-classic.webp" width="100" height="44" alt="RAL Classic" style="height:24px;width:auto;object-fit:contain"/><img loading="lazy" src="/logo-ral-design.webp" width="100" height="44" alt="RAL Design" style="height:24px;width:auto;object-fit:contain"/></div><h3>RAL Colors</h3><p>RAL is a European standard for paints and coatings. RAL Classic has 213 codes (e.g. RAL 3000 — Flame Red). RAL Design System+ extends this to 1,625+ colors by hue and lightness.</p></article>
       <article class="know-card"><div class="know-icon" style="display:flex;gap:8px;align-items:center;margin-bottom:10px"><img loading="lazy" src="/logo-pantone.svg" width="100" height="27" alt="Pantone" style="height:24px;width:auto;object-fit:contain"/><img loading="lazy" src="/logo-ncs.webp" width="100" height="57" alt="NCS" style="height:24px;width:auto;object-fit:contain"/></div><h3>Pantone &amp; NCS</h3><p>Pantone is the global print &amp; brand identity standard. NCS (Natural Color System) is based on human color perception. Both use HEX approximations for screen display.</p></article>
       <article class="know-card"><div class="know-icon">🌈</div><h3>Complementary Colors</h3><p>A complementary color is directly opposite on the color wheel. Triadic colors are 120° and 240° apart on the HSL wheel — both form the basis of professional color systems.</p></article>
-      <article class="know-card"><div class="know-icon" style="display:flex;gap:8px;align-items:center;margin-bottom:10px"><img src="/logo-adobe.png" height="24" style="height:24px;width:auto" alt="Adobe Express"/></div><h3>Use Colors in Canva</h3><p>Copy your HEX and paste it directly in Canva's color picker. Click any element → color swatch → paste HEX. <a href="https://www.adobe.com/express/" target="_blank" rel="noopener sponsored" style="color:var(--purple);font-weight:700">Try Canva free →</a></p></article>
+      <article class="know-card"><div class="know-icon" style="display:flex;gap:8px;align-items:center;margin-bottom:10px"><img src="/logo-adobe.png" height="24" style="height:24px;width:auto" alt="Adobe Express"/></div><h3>Use Colors in Adobe Express</h3><p>Copy your HEX and paste it directly in Adobe Express. Select any element → fill color → paste HEX. Instant on-brand visuals. <a href="https://www.adobe.com/express/" target="_blank" rel="noopener sponsored" style="color:var(--purple);font-weight:700">Try Adobe Express free →</a></p></article>
     </div>
   </section>
 
@@ -375,7 +371,7 @@
       <details class="faq"><summary>What is a HEX color code?</summary><div class="faq-ans">A HEX code is a six-digit hexadecimal number for an RGB color, starting with #. Each pair represents Red, Green and Blue (00–FF). For example, #FF5733 is a warm orange-red.</div></details>
       <details class="faq"><summary>What color standards are supported?</summary><div class="faq-ans">Five standards: CSS Named Colors (W3C), RAL Classic (industrial), RAL Design System+ (architectural), Pantone Solid Coated (brand/print), and NCS Natural Color System. Select with the radio buttons above the color tool.</div></details>
       <details class="faq"><summary>What is the difference between RGB and HSL?</summary><div class="faq-ans">RGB mixes red, green and blue channels. HSL describes Hue (0–360°), Saturation and Lightness. HSL is easier for design work — to make a color lighter, simply increase the L value.</div></details>
-      <details class="faq"><summary>How do I use my color in Canva?</summary><div class="faq-ans">Click the HEX chip to copy your code. In Canva, select any element, click its color swatch in the toolbar, and paste your HEX in the color input field. Canva is free at canva.com.</div></details>
+      <details class="faq"><summary>How do I use my color in Adobe Express?</summary><div class="faq-ans">Click the HEX chip to copy your code. In Adobe Express, select any element, click its color swatch in the toolbar, and paste your HEX in the color input field. Adobe Express is free at adobe.com/express.</div></details>
       <details class="faq"><summary>Can I pick a color from an image instead?</summary><div class="faq-ans">Yes — use the <a href="/image.html" style="color:var(--purple);font-weight:700">Pick from Image</a> tool. Upload any photo and click any pixel to extract its exact color.</div></details>
     </div>
   </section>
@@ -391,7 +387,6 @@
       <div class="res-card"><div class="res-icon">📦</div><div class="res-name">RAL Colors</div><div class="res-desc">Official RAL website with the complete Classic and Design systems.</div><a href="https://www.ral-farben.de/en" target="_blank" rel="noopener" class="res-link">Visit →</a></div>
       <div class="res-card"><div class="res-icon"><img src="/logo-adobe.png" width="32" height="32" alt="Adobe Express" style="width:32px;height:32px"/></div><div class="res-name">Adobe Color</div><div class="res-desc">Adobe's professional color wheel — complementary, triadic, analogous and more.</div><a href="https://color.adobe.com" target="_blank" rel="noopener" class="res-link">Visit →</a></div>
     </div>
-    <p style="font-size:11px;color:var(--text-lt);margin-top:14px">* "Try Free" links to Canva are affiliate links. We may earn a commission at no cost to you. Canva® is a trademark of Canva Pty Ltd.</p>
   </section>
 
 </div>
@@ -433,7 +428,7 @@
     </div>
     <div class="footer-bottom">
       <p>© 2025 Coloralyze · Not affiliated with Adobe Inc.</p>
-      <p class="footer-disc">Affiliate Disclosure: Canva links are affiliate links. We may earn a commission if you sign up, at no cost to you.</p>
+      <p class="footer-disc">Adobe Express links may be affiliate links. We may earn a commission at no cost to you. Adobe Express® is a trademark of Adobe Inc.</p>
     </div>
   </div>
 </footer>
