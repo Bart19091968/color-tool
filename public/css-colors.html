@@ -50,8 +50,8 @@
     /* Landing page extras */
     .lp-hero{background:radial-gradient(ellipse 70% 65% at 10% 75%,rgba(255,145,115,.28) 0%,transparent 100%),radial-gradient(ellipse 65% 60% at 90% 25%,rgba(125,185,255,.22) 0%,transparent 100%),radial-gradient(ellipse 55% 55% at 55% 105%,rgba(255,210,65,.2) 0%,transparent 100%),radial-gradient(ellipse 45% 40% at 32% -5%,rgba(200,155,255,.14) 0%,transparent 100%),#fff; padding:80px 24px 88px; text-align:center; position:relative; overflow:hidden; }
     .lp-hero::before{content:"";position:absolute;inset:0;pointer-events:none}
-    .lp-hero h1{font-size:clamp(28px,5.5vw,54px);font-weight:900;color:#1a1a1a; line-height:1.15; letter-spacing:-0.5px; margin-bottom:12px; position:relative; }
-    .lp-hero p { font-size:clamp(14px,2vw,17px); color:#555; max-width:520px; margin:0 auto 24px; font-weight:500; position:relative; }
+    .lp-hero h1{font-size:clamp(28px,5.5vw,54px);font-weight:900;color:#1a1a1a; line-height:1.08; letter-spacing:-0.5px; margin-bottom:16px; position:relative; }
+    .lp-hero p { font-size:clamp(14px,2vw,17px); color:#555; max-width:560px; margin:0 auto 32px; font-weight:400; position:relative; }
     .lp-hero-badge { display:inline-flex; align-items:center; gap:6px; background:rgba(0,0,0,.06);color:#555;border:1px solid rgba(0,0,0,.1); border-radius:50px; padding:5px 16px; font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:16px; position:relative; }
     .lp-hero .hero-btn-secondary{background:rgba(0,0,0,.06);color:#1a1a1a;border-color:rgba(0,0,0,.15);backdrop-filter:none}
     .lp-hero .hero-btn-secondary:hover{background:rgba(0,0,0,.1)}
@@ -161,6 +161,7 @@
   <div class="hero-actions">
     <a href="/?std=css" class="hero-btn hero-btn-primary">Open CSS Color Finder →</a>
     <a href="/image?std=css" class="hero-btn hero-btn-secondary">Pick from Image</a>
+    <a href="https://amzn.to/3OuSuQ4" target="_blank" rel="noopener" class="hero-btn hero-btn-secondary">Learn CSS</a>
   </div>
 </div>
 <div class="lp-wrap">
@@ -350,11 +351,21 @@ function filterTable(input, tbodyId) {
 }
 </script>
     </div></div>
+    <div class="card"><div class="card-pad">
+      <div class="card-title">Frequently Asked Questions</div>
+      <div class="faq-list">
+        <details class="faq"><summary>What are CSS Named Colors?</summary><div class="faq-ans">CSS Named Colors are 148 color keywords defined by the W3C web standard — such as <strong>tomato</strong>, <strong>steelblue</strong> and <strong>papayawhip</strong>. You can use them directly in HTML and CSS without a HEX or RGB value.</div></details>
+        <details class="faq"><summary>How many CSS named colors are there?</summary><div class="faq-ans">There are 148 CSS named colors in the W3C specification, plus the special keyword <strong>transparent</strong>. All modern browsers support the full list.</div></details>
+        <details class="faq"><summary>Are CSS color names the same as HEX codes?</summary><div class="faq-ans">Each CSS color name maps to an exact HEX value — for example, <strong>red</strong> = <code>#FF0000</code> and <strong>cornflowerblue</strong> = <code>#6495ED</code>. Coloralyze shows both the name and the HEX so you can use either in your project.</div></details>
+        <details class="faq"><summary>Which browsers support CSS Named Colors?</summary><div class="faq-ans">All modern browsers fully support CSS Named Colors: Chrome, Firefox, Safari, Edge and Opera. The list has been stable since CSS3 and is part of the W3C web standard.</div></details>
+        <details class="faq"><summary>Can I use CSS colors in Adobe Express?</summary><div class="faq-ans">Yes. Copy the HEX code from Coloralyze, open Adobe Express, select any element, click the color swatch, and paste the HEX in the color input field. <a href="https://www.adobe.com/express/" target="_blank" rel="noopener sponsored">Try Adobe Express free →</a></div></details>
+      </div>
+    </div></div>
   </div>
   <aside class="lp-sidebar">
     <div class="canva-card">
       <div class="canva-card-logo">
-        <svg viewBox="0 0 36 36" fill="none" style="width:26px;height:26px"><circle cx="18" cy="10" r="7" fill="white" opacity="0.9"/><circle cx="26" cy="23" r="7" fill="white" opacity="0.7"/><circle cx="10" cy="23" r="7" fill="white" opacity="0.55"/></svg>
+        <img src="/logo-adobe.png" width="28" height="28" alt="Adobe Express" style="width:28px;height:28px"/>
         <span class="canva-card-logo-text">Adobe Express</span>
       </div>
       <h3>Design with your color</h3>
@@ -399,7 +410,7 @@ function filterTable(input, tbodyId) {
     </div>
     <div class="footer-bottom">
       <p>© 2025 Coloralyze · Free color identification tool · Not affiliated with Adobe Inc.</p>
-      <p class="footer-disc">Affiliate Disclosure: Adobe Express links may be affiliate links. We may earn a small commission if you sign up, at no cost to you.</p>
+      <p class="footer-disc">Affiliate Disclosure: Adobe Express links, Amazon.com links and Coolors.co links may be affiliate links. We may earn a small commission if you sign up, at no cost to you.</p>
     </div>
   </div>
 </footer>
