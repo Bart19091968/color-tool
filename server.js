@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname, "public"), {
   etag: true,
   setHeaders(res, filePath) {
     // HTML never cached — always fresh
-    if (filePath.endsWith(".html")) res.setHeader("Cache-Control", "no-cache");
+    if (filePath.endsWith(".html") || filePath.endsWith("favicon.svg")) res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
   }
 }));
 
