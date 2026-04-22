@@ -92,12 +92,21 @@ app.get("/sitemap.xml", (req, res) => {
     { url: "/ncs-colors",          priority: "0.8", freq: "monthly" },
     { url: "/css-color-names",     priority: "0.8", freq: "monthly" },
     { url: "/blog",                priority: "0.7", freq: "weekly" },
-    { url: "/blog/ral-classic-vs-ral-design",    priority: "0.6", freq: "monthly" },
+    { url: "/blog/ral-classic-vs-ral-design",     priority: "0.6", freq: "monthly" },
     { url: "/blog/how-to-find-pantone-from-photo",priority: "0.6", freq: "monthly" },
-    { url: "/blog/what-is-ncs-color-system",     priority: "0.6", freq: "monthly" },
-    { url: "/blog/how-to-use-hex-in-canva",      priority: "0.6", freq: "monthly" },
-    { url: "/blog/eyedropper-api-guide",         priority: "0.6", freq: "monthly" },
-    { url: "/blog/complete-guide-color-standards",priority:"0.6", freq: "monthly" },
+    { url: "/blog/what-is-ncs-color-system",      priority: "0.6", freq: "monthly" },
+    { url: "/blog/how-to-use-hex-in-canva",       priority: "0.6", freq: "monthly" },
+    { url: "/blog/how-to-use-hex-in-adobe-express",priority:"0.6", freq: "monthly" },
+    { url: "/blog/eyedropper-api-guide",          priority: "0.6", freq: "monthly" },
+    { url: "/blog/complete-guide-color-standards",priority: "0.6", freq: "monthly" },
+    { url: "/blog/canva-review",                  priority: "0.6", freq: "monthly" },
+    { url: "/blog/adobe-express-review",          priority: "0.6", freq: "monthly" },
+    { url: "/blog/canva-vs-adobe-express",        priority: "0.6", freq: "monthly" },
+    { url: "/blog/adobe-express-vs-canva",        priority: "0.6", freq: "monthly" },
+    { url: "/blog/canva-vs-powerpoint",           priority: "0.6", freq: "monthly" },
+    { url: "/blog/adobe-express-vs-powerpoint",   priority: "0.6", freq: "monthly" },
+    { url: "/blog/is-adobe-express-free",         priority: "0.6", freq: "monthly" },
+    { url: "/blog/canva-pro-worth-it",            priority: "0.6", freq: "monthly" },
   ];
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -153,7 +162,9 @@ Extensible via POST /api/colors
 `);
 });
 
-// ── Catch-all ─────────────────────────────────────────────
-app.get("*", page("index.html"));
+// ── Catch-all: proper 404 ─────────────────────────────────
+app.get("*", (req, res) => {
+  res.status(404).sendFile(path.join(__dirname, "public", "404.html"));
+});
 
 app.listen(PORT, () => console.log(`Coloralyze → ${SITE} (port ${PORT})`));
